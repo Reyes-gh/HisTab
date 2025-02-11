@@ -1,5 +1,6 @@
 let letraO = document.querySelector(".letraO"),
-    buscador = document.querySelector("#searchBarInput")
+    buscador = document.querySelector("#searchBarInput"),
+    buscadorContainer = document.querySelector(".searchBarContainer")
 
 function busqueda(valorBusqueda) {
     buscador.classList.add("noEvents");
@@ -19,5 +20,9 @@ buscador.addEventListener("keydown", function (e) {
         busqueda(this.value)
     }
 })
+
+setTimeout(() => {
+    buscadorContainer.classList.add("withTransition");
+}, 500);
 
 

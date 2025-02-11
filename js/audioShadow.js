@@ -34,8 +34,10 @@ $(".textoLetra").on("mousedown", function () {
 
         $(".ringList").append(newRingTag);
 
-        textoRing.style.top = letraO.getBoundingClientRect().y
-        textoRing.style.left = letraO.getBoundingClientRect().x + 25 + "px"
+        $(textoRing).css({
+            "top": letraO.getBoundingClientRect().y,
+            "left": letraO.getBoundingClientRect().x + 25
+        })
 
         textoRing.textContent = conteoRing
         textoRing.classList.add("ringCounter")

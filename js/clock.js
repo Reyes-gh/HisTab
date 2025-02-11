@@ -1,4 +1,3 @@
-
 const clockElement = document.getElementById('clock');
 
 function updateClock() {

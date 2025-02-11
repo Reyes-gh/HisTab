@@ -16,6 +16,7 @@ contenedorImagen.addEventListener("click", () => {
         modoShadow: modoShadow
     })
     cambiaFoto()
+    window.dispatchEvent(new HashChangeEvent("hashchange"))
 })
 
 function cambiaFoto() {
