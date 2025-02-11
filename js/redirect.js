@@ -26,7 +26,7 @@ async function toShadow() {
 
     document.body.innerHTML = '<div class="cortina"></div>';
     document.head.innerHTML += '<link rel="stylesheet" href="css/indexShadow.css">';
-    document.body.innerHTML += await fetchHTMLAsText("../shadow.html")
+    document.body.innerHTML += await fetchHTMLAsText("../templates/shadow.html")
 
     let scriptAudioShadow = document.createElement('script');
     scriptAudioShadow.src = '../js/audioShadow.js';
@@ -42,7 +42,7 @@ async function toShadow() {
 async function toSonic() {
     document.body.innerHTML = '<div class="cortina"></div>';
     document.head.innerHTML += '<link rel="stylesheet" href="css/indexSonic.css">';
-    document.body.innerHTML += await fetchHTMLAsText("../sonic.html")
+    document.body.innerHTML += await fetchHTMLAsText("../templates/sonic.html")
 
     let scriptAudioSonic = document.createElement('script');
     scriptAudioSonic.src = '../js/audioSonic.js';

@@ -131,6 +131,9 @@ $(".textoLetra").on("mousedown", function () {
                         setTimeout(() => {
                             if (bufferResults != undefined) turnOff(bufferResults)
                             bufferResults = reproduceSonido(soundSonicResults)
+                            setTimeout(() => {
+                                turnOff(bufferResults)
+                            }, 3500);
                         }, 700);
                     }, 700);
                 }, 1000);
