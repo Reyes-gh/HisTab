@@ -1,0 +1,294 @@
+@font-face {
+    font-family: 'NiseSegaSonic';
+    src: URL('../font/NiseSegaSonic.TTF') format('truetype');
+}
+
+.cortina {
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 200;
+    animation: fadeOut .5s;
+    animation-fill-mode: forwards;
+}
+
+
+body {
+    animation: fadeIn 1s;
+    background-color: black;
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+#backgroundVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 0;
+    filter: brightness(95%);
+}
+
+/* 
+    ! Animación para fadeIn del vídeo, para que no poppee por la cara
+*/
+@keyframes fadeIn {
+    10% {
+        opacity: 0%;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}
+
+/* 
+    ! Animación para fadeIn del vídeo, para que no poppee por la cara
+*/
+@keyframes fadeOut {
+    0% {
+        opacity: 100%;
+    }
+
+    100% {
+        opacity: 0%;
+    }
+}
+
+/**
+ * ! Vignette para el fondo
+ */
+.vignette {
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0px 0px 132px 69px #000;
+}
+
+/*
+    !Reloj
+*/
+
+#clock {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: white;
+    font-size: 36px;
+    font-family: 'Console', monospace;
+    z-index: 3;
+}
+
+/*
+    !Contenedor padre de la searchBar
+*/
+.searchBar {
+    z-index: 3;
+    pointer-events: none;
+    transition: .2s;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.searchBar:has(#searchBarInput:focus) {
+    transition: .2s;
+    backdrop-filter: brightness(80%) blur(5px);
+}
+
+/*
+    ! Contenedor del input y la lupa
+*/
+
+.searchBarContainer {
+    z-index: 4;
+    pointer-events: all;
+    display: flex;
+    flex-direction: row;
+    transition: .2s;
+    height: 25px;
+    aspect-ratio: 10/1;
+    font-size: 15px;
+    position: absolute;
+    bottom: 10%;
+    gap: 5px;
+
+    background-color: black;
+    color: rgba(255, 255, 255, 0.742);
+    border: 0px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.searchBarContainer:has(#searchBarInput:focus) {
+    transform: scale(120%);
+    transition: .2s;
+    bottom: 50%;
+
+    box-shadow: 0px 0px 20px black;
+}
+
+/*
+    ! Input buscador
+*/
+
+#searchBarInput {
+    width: 90%;
+    background: transparent;
+    background-color: black;
+    color: rgba(255, 255, 255, 0.742);
+    border: 0px;
+    height: inherit;
+}
+
+#searchBarInput:focus {
+    z-index: 4;
+    border: 0px;
+    outline: none;
+}
+
+/*
+    ! Lupa
+*/
+
+.lupaVector {
+    cursor: pointer;
+    filter: invert(90%);
+}
+
+.containerTexto {
+    touch-action: manipulation;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textoShadowContainerRow {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.textoShadowRow {
+    z-index: 2;
+    position: relative;
+    touch-action: manipulation;
+    align-items: center;
+    pointer-events: all;
+    display: flex;
+    flex-direction: row;
+    transform: scale(1);
+    height: 120px;
+}
+
+.textoShadowRow img {
+    height: auto;
+    width: auto;
+    position: absolute;
+    pointer-events: all;
+    max-width: 90px;
+    z-index: 1;
+    transition: .2s;
+    transform: translateX(-206px);
+    filter: drop-shadow(0px 0px 5px white);
+}
+
+.textoShadowRow img:hover {
+    z-index: 3;
+    transform: translateX(-206px) scale(1.1);
+    transition: .2s;
+}
+
+.textoShadowRow img:active {
+    transition: .05s;
+    transform: translateX(-206px) scale(1.15);
+}
+
+.textoShadowRow img.letraS {
+    width: 120px;
+    left: 0px;
+}
+
+.textoShadowRow img.letraH {
+    width: 75px;
+    left: 72px;
+}
+
+.textoShadowRow img.letraA {
+    width: 62px;
+    left: 130px;
+}
+
+.textoShadowRow img.letraD {
+    width: 59px;
+    left: 190px;
+}
+
+.textoShadowRow img.letraO {
+    width: 63px;
+    left: 245px;
+}
+
+.textoShadowRow img.letraW {
+    width: 85px;
+    left: 304.5px;
+}
+
+.ringClass {
+    width: 90px;
+    position: absolute;
+    z-index: 1;
+    animation: fall 3s ease-in-out;
+    animation-fill-mode: forwards
+}
+
+.ringCounter {
+    font-family: 'NiseSegaSonic';
+    color: white;
+    z-index: 5;
+    position: absolute;
+    animation: fallUpwards .5s ease-out;
+    animation-fill-mode: forwards;
+    font-size: 22px;
+
+    color: rgb(139, 139, 139);
+    -webkit-text-stroke: 5px #7e0000;
+    paint-order: stroke fill
+}
+
+@keyframes fallUpwards {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        opacity: 0%;
+        transform: translateY(-30px);
+    }
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100px);
+    }
+
+    100% {
+        transform: translateY(calc(3000px));
+    }
+}
+
+.noEvents {
+    pointer-events: none;
+}

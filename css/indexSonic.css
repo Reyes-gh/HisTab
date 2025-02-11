@@ -1,0 +1,307 @@
+@font-face {
+    font-family: 'NiseSegaSonic';
+    src: URL('../font/NiseSegaSonic.TTF') format('truetype');
+}
+
+.cortina {
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 200;
+    animation: fadeOut .5s;
+    animation-fill-mode: forwards;
+}
+
+body {
+    background-color: black;
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+#backgroundVideo {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 0;
+    filter: brightness(110%);
+}
+
+#backgroundVideo.withTransition {
+    transition: 1s;
+}
+
+#backgroundVideo.superSonic {
+    filter: brightness(1.8);
+    opacity: .8;
+}
+
+/* 
+    ! Animación para fadeIn del vídeo, para que no poppee por la cara
+*/
+@keyframes fadeIn {
+    10% {
+        opacity: 0%;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}
+
+/* 
+    ! Animación para fadeIn del vídeo, para que no poppee por la cara
+*/
+@keyframes fadeOut {
+    0% {
+        opacity: 100%;
+    }
+
+    100% {
+        opacity: 0%;
+    }
+}
+
+/**
+ * ! Vignette para el fondo
+ */
+.vignette {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 1000px #000;
+}
+
+/*
+    !Reloj
+*/
+
+#clock {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: white;
+    font-size: 36px;
+    font-family: 'Console', monospace;
+    z-index: 1;
+}
+
+/*
+    !Contenedor padre de la searchBar
+*/
+.searchBar {
+    z-index: 3;
+    pointer-events: none;
+    transition: .2s;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.searchBar:has(#searchBarInput:focus) {
+    transition: .2s;
+    backdrop-filter: brightness(80%) blur(5px);
+}
+
+/*
+    ! Contenedor del input y la lupa
+*/
+
+.searchBarContainer {
+    z-index: 4;
+    pointer-events: all;
+    display: flex;
+    flex-direction: row;
+    transition: .2s;
+    height: 25px;
+    aspect-ratio: 10/1;
+    font-size: 15px;
+    position: absolute;
+    bottom: 10%;
+    gap: 5px;
+
+    background-color: black;
+    color: rgba(255, 255, 255, 0.742);
+    border: 0px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.searchBarContainer:has(#searchBarInput:focus) {
+    transform: scale(120%);
+    transition: .2s;
+    bottom: 50%;
+
+    box-shadow: 0px 0px 20px black;
+}
+
+/*
+    ! Input buscador
+*/
+
+#searchBarInput {
+    z-index: 4;
+    width: 90%;
+    background: transparent;
+    background-color: black;
+    color: rgba(255, 255, 255, 0.742);
+    border: 0px;
+    height: inherit;
+}
+
+#searchBarInput:focus {
+    z-index: 4;
+    border: 0px;
+    outline: none;
+}
+
+/*
+    ! Lupa
+*/
+
+.lupaVector {
+    cursor: pointer;
+    filter: invert(90%);
+}
+
+.containerTexto {
+    touch-action: manipulation;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textoSonicRow {
+    z-index: 2;
+    touch-action: manipulation;
+    pointer-events: all;
+    transform: scale(.2);
+    display: flex;
+    flex-direction: row;
+}
+
+.textoSonicRow.withTransition {
+    transition: .6s ease-in-out;
+}
+
+.textoSonicRow.superSonic {
+    transition: .5s;
+    filter: hue-rotate(204deg) brightness(3);
+}
+
+.textoSonicRow img {
+    pointer-events: all;
+    z-index: 2;
+    transition: .2s;
+}
+
+.textoSonicRow img:hover {
+    z-index: 3;
+    transform: scale(1.2);
+    transition: .2s;
+}
+
+.textoSonicRow img:active {
+    transition: .05s;
+    transform: scale(1.5);
+}
+
+.ringClass {
+    width: 90px;
+    position: absolute;
+    z-index: 1;
+    animation: fall 3s ease-in-out;
+    animation-fill-mode: forwards
+}
+
+.ringCounter {
+    font-family: 'NiseSegaSonic';
+    color: white;
+    z-index: 5;
+    position: absolute;
+    animation: fallUpwards .5s ease-out;
+    animation-fill-mode: forwards;
+    font-size: 22px;
+
+    color: gold;
+    -webkit-text-stroke: 5px #2a00e5;
+    paint-order: stroke fill
+}
+
+@keyframes fallUpwards {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        opacity: 0%;
+        transform: translateY(-30px);
+    }
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100px);
+    }
+
+    100% {
+        transform: translateY(calc(3000px));
+    }
+}
+
+.noEvents {
+    pointer-events: none;
+}
+
+.rankContainer {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.scoreRank {
+    z-index: 5;
+    width: 5rem;
+    position: absolute;
+    bottom: 25%;
+    animation: introRank 6s ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes introRank {
+    0% {
+        transform: scale(300%) rotate(0deg);
+        opacity: 0%;
+    }
+
+    10% {
+        transform: scale(100%) rotate(-15deg);
+        opacity: 100%;
+    }
+
+    15% {
+        transform: scale(100%) rotate(-15deg);
+        opacity: 100%;
+    }
+
+    100% {
+        transform: scale(100%) rotate(-15deg) translate(-40px, 200px);
+        opacity: 0%;
+    }
+}

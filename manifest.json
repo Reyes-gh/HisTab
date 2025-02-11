@@ -1,0 +1,29 @@
+{
+    "manifest_version": 3,
+    "name": "His Tab",
+    "version": "1.0",
+    "description": "Sonic themed new tab.",
+    "permissions": ["storage"],
+    "icons": {
+        "16": "extension_logo.png",
+        "32": "extension_logo.png",
+        "48": "extension_logo.png",
+        "128": "extension_logo.png"
+    },
+    "chrome_url_overrides": {
+        "newtab": "index.html"
+    },
+    "web_accessible_resources": [
+        {
+            "resources": ["js/clock.js"],
+            "matches": ["<all_urls>"]
+        }
+    ],
+    "content_security_policy": {
+        "extension_pages": "default-src 'self';"
+    },
+    "action": {
+        "default_icon": "extension_logo.png",
+        "default_popup": "./popup.html"
+    }
+}
