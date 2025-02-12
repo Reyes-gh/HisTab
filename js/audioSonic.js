@@ -41,6 +41,8 @@ Promise.all([
     cargaSonido("sound/sonic/sonicScore.wav").then(buffer => soundSonicScore = buffer),
     cargaSonido("sound/sonic/sonicRank.wav").then(buffer => soundSonicRank = buffer),
     cargaSonido("sound/sonic/press_start.wav").then(buffer => soundPressStart = buffer),
+
+    cargaSonido("sound/sonic/loopTest.mp3").then(buffer => loopTest = buffer),
 ]).then(() => {
     console.log("Come on! Step it up!");
 });
@@ -127,7 +129,7 @@ $(".textoLetra").on("mousedown", function () {
                 break;
             case 460:
                 turnOff(currentAppear);
-                currentGlobal = currentHisWorldInstrumental = reproduceSonido(soundSonicHisWorldInstrumental, 0)
+                currentGlobal = currentHisWorldInstrumental = reproduceSonido(soundSonicHisWorldInstrumental, .15);
                 turnUp(currentHisWorldInstrumental, .15)
                 break;
         }
@@ -192,7 +194,7 @@ async function cargaSonido(url) {
     return await audioContext.decodeAudioData(arrayBuffer);
 }
 
-function reproduceSonido(nameVar, customVol = 0.05) {
+function reproduceSonido(nameVar, customVol = 0.05, loopStart = 0, loopEnd = 0) {
     if (!nameVar) return;
 
     const source = audioContext.createBufferSource();
@@ -201,6 +203,9 @@ function reproduceSonido(nameVar, customVol = 0.05) {
     gainNode.gain.value = customVol;
     source.connect(gainNode);
     gainNode.connect(audioContext.destination);
+    source.loop = (loopStart != loopEnd)
+    source.loopStart = loopStart;
+    source.loopEnd = loopEnd;
     source.start(0);
     source.onended = () => {
         source.stop()
