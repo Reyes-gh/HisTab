@@ -1,16 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
     let modoShadow;
+    let showLogo;
     const storage = (typeof browser !== "undefined" && browser.storage) ? browser.storage : chrome.storage;
-    storage.sync.get('modoShadow', async function (obj) {
+    storage.sync.get(["modoShadow", "isLogoActive"], async function (obj) {
         modoShadow = obj.modoShadow;
-
+        showLogo = obj.isLogoActive;
         let pageHTML = (modoShadow ? ("Shadow") : ("Sonic"));
 
         function loadPage(pageHTML) {
             fetch(`templates/${pageHTML}.html`)
-                .then(response => response.text())
+                .then(fetchedHTML => fetchedHTML.text())
                 .then(html => {
-                    document.getElementById("appSonic").innerHTML = html;
+                    document.getElementById("appSonic").innerHTML = html
+
+                    if (!showLogo) document.querySelector(`.texto${pageHTML}Row`).remove();
 
                     let scriptAudio = document.createElement('script');
                     scriptAudio.src = `js/audio${pageHTML}.js`;

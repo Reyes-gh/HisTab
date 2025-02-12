@@ -318,7 +318,7 @@ body {
     }
 
     100% {
-        transform: scale(100%) rotate(-15deg) translate(-40px, 200px);
+        transform: scale(100%) rotate(-15deg) translate(-50px, 200px);
         opacity: 0%;
     }
 }

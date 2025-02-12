@@ -16,3 +16,15 @@ body, .containerButton {
 .imagenPopup {
     width: 100px;
 }
+
+.containerPopup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 200px;
+}
+
+#labelShowLogo {
+    text-align: center;
+}

@@ -31,12 +31,21 @@ let isHDAvailable;
 videoSource = document.createElement("source");
 videoSource.src = "video/kingdom_low.mp4"
 
-fetch("video/kingdom3.mp4",
-    { method: "HEAD" }
-).then((res) => {
-    isHDAvailable = res.ok
-    if (window.innerWidth > 768 && isHDAvailable) videoSource.src = "video/kingdom3.mp4"
-    videoContainer.appendChild(videoSource)
-})
+Promise.all([
+    fetch("video/kingdom3.mp4",
+        { method: "HEAD" }
+    ).then((res) => {
+        if (window.innerWidth > 768) videoSource.src = "video/kingdom3.mp4"
+        videoContainer.appendChild(videoSource)
+    }).catch((err) => {
+        console.log("HD File not found!")
+    })
+]).then(
+    () => {
+        console.log("Done loading!")
+        videoContainer.appendChild(videoSource)
+    }
+
+)
 
 
