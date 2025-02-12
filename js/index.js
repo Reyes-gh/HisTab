@@ -1,6 +1,7 @@
 let letraO = document.querySelector(".letraO"),
     buscador = document.querySelector("#searchBarInput"),
-    buscadorContainer = document.querySelector(".searchBarContainer")
+    buscadorContainer = document.querySelector(".searchBarContainer"),
+    videoContainer = document.querySelector("#backgroundVideo")
 
 function busqueda(valorBusqueda) {
     buscador.classList.add("noEvents");
@@ -24,5 +25,18 @@ buscador.addEventListener("keydown", function (e) {
 setTimeout(() => {
     buscadorContainer.classList.add("withTransition");
 }, 500);
+
+let videoSource;
+let isHDAvailable;
+videoSource = document.createElement("source");
+videoSource.src = "video/kingdom_low.mp4"
+
+fetch("video/kingdom3.mp4",
+    { method: "HEAD" }
+).then((res) => {
+    isHDAvailable = res.ok
+    if (window.innerWidth > 768 && isHDAvailable) videoSource.src = "video/kingdom3.mp4"
+    videoContainer.appendChild(videoSource)
+})
 
 

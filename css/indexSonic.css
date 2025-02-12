@@ -26,8 +26,8 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     z-index: 0;
     filter: brightness(110%);
@@ -40,6 +40,17 @@ body {
 #backgroundVideo.superSonic {
     filter: brightness(1.8);
     opacity: .8;
+}
+
+/**
+ * ! Vignette para el fondo
+ */
+.vignette {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 1000px #000;
 }
 
 /* 
@@ -68,16 +79,7 @@ body {
     }
 }
 
-/**
- * ! Vignette para el fondo
- */
-.vignette {
-    z-index: 1;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    box-shadow: inset 0 0 1000px #000;
-}
+
 
 /*
     !Reloj

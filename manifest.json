@@ -10,9 +10,6 @@
         "48": "extension_logo.png",
         "128": "extension_logo.png"
     },
-    "background": {
-        "service_worker": "js/background.js"
-    },
     "chrome_url_overrides": {
         "newtab": "index.html"
     },
