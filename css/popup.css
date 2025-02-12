@@ -1,20 +1,42 @@
-body, .containerButton {
+body {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 150px;
-    max-height: 150px;
+    max-width: 300px;
+    max-height: 300px;
 
     width: 100%;
     height: 100%;
 
     margin: 0px;
-    padding: 0px;
-
+    padding: 15px 15px;
 }
 
-.imagenPopup {
-    width: 100px;
+.formModo {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 15px;
+}
+
+.formModo label {
+    width: 100%;
+    min-height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.formModo label img {
+    max-width: 50px;
+}
+
+.formModoElement {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
 }
 
 .containerPopup {
@@ -22,7 +44,8 @@ body, .containerButton {
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    width: 200px;
+    height: 100%;
+    width: 500px;
 }
 
 #labelShowLogo {

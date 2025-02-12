@@ -1,38 +1,46 @@
-var modoShadow;
+var modoApp;
 var showLogo;
+var globalConfig;
+const storage = (typeof browser !== "undefined" && browser.storage) ? browser.storage : chrome.storage;
 
 document.addEventListener("DOMContentLoaded", () => {
-    const storage = (typeof browser !== "undefined" && browser.storage) ? browser.storage : chrome.storage;
-    storage.sync.get(["modoShadow", "isLogoActive"], async function (obj) {
-        modoShadow = obj.modoShadow;
+    storage.sync.get(["modoApp", "isLogoActive"], async function (obj) {
+        modoApp = obj.modoApp;
         showLogo = obj.isLogoActive;
-        let pageHTML = (modoShadow ? ("Shadow") : ("Sonic"));
 
         function loadPage(pageHTML) {
             fetch(`templates/${pageHTML}.html`)
                 .then(fetchedHTML => fetchedHTML.text())
-                .then(html => {
+                .then(async html => {
                     document.getElementById("appSonic").innerHTML = html
 
                     if (!showLogo) document.querySelector(`.texto${pageHTML}Row`).remove();
 
-                    let scriptAudio = document.createElement('script');
-                    scriptAudio.src = `js/audio${pageHTML}.js`;
-                    document.head.appendChild(scriptAudio);
-                    let scriptIndex = document.createElement('script');
-                    let scriptClock = document.createElement('script');
-                    scriptIndex.src = 'js/index.js';
+                    let scriptAudio = document.createElement("script");
+                    let scriptVideo = document.createElement("script");
+                    let scriptClock = document.createElement("script");
+                    let scriptIndex = document.createElement("script");
+
+                    scriptAudio.src = `js/${modoApp}/audio.js`;
+                    scriptVideo.src = `js/video.js`;
                     scriptClock.src = 'js/clock.js';
-                    document.head.appendChild(scriptClock);
-                    document.head.appendChild(scriptIndex);
+                    scriptIndex.src = 'js/index.js';
+
+                    Promise.all([
+                        document.head.appendChild(scriptAudio),
+                        document.head.appendChild(scriptVideo),
+                        document.head.appendChild(scriptClock),
+                    ]).then(async () => {
+                        await Promise.resolve(document.head.appendChild(scriptIndex))
+                        console.log("All scripts loaded!")
+                    })
 
                 })
                 .catch(error => console.error("Error cargando la página:", error));
         }
 
-        function router() {
-            const route = pageHTML; // Si no hay hash, va a home
-            loadPage(route);
+        async function router() {
+            await loadPage(modoApp);
         }
 
         window.addEventListener("hashchange", router);
