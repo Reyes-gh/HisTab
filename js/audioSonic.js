@@ -50,7 +50,7 @@ $(".textoLetra").on("mousedown", function () {
     if ($(this).hasClass("letraO")) {
 
         //! Formula spin progresivo
-        //console.log(letraO.style.transform = `rotate(${conteoRing * (conteoRing / 5)}deg)`)
+        //console.log(letraO.style.transform = `rotate(${conteoRing * (conteoRing / 15)}deg)`)
 
         if (!timerActive && conteoRing >= 25) {
             timerActive = true;
@@ -96,6 +96,42 @@ $(".textoLetra").on("mousedown", function () {
             textoRing.remove();
         }, 4000);
 
+        switch (conteoRing) {
+            case 25:
+                reproduceSonido(soundSonicOkay);
+                break;
+            case 50:
+                reproduceSonido(soundSonicYeah);
+                break;
+            case 75:
+                reproduceSonido(soundSonicYes, .08)
+                break;
+            case 100:
+                reproduceSonido(soundSonicSweet, .08)
+                break;
+            case 150:
+                reproduceSonido(soundSonicFeelingGood, .08)
+                break;
+            case 185:
+                setTimeout(() => {
+                    currentGlobal = currentAppear = reproduceSonido(soundSonicAppears, .15)
+                }, 300);
+                break;
+            case 200:
+                reproduceSonido(soundSonicNowIllShowYou, .3)
+                setTimeout(() => {
+                    reproduceSonido(soundSonicSuper, .5);
+                    backgroundVideo.classList.add("superSonic")
+                    sonicRowText.classList.add("superSonic")
+                }, 500);
+                break;
+            case 460:
+                turnOff(currentAppear);
+                currentGlobal = currentHisWorldInstrumental = reproduceSonido(soundSonicHisWorldInstrumental, 0)
+                turnUp(currentHisWorldInstrumental, .15)
+                break;
+        }
+
         if (conteoRing > 25) {
             timeoutRings = setTimeout(() => {
                 finalRing = conteoRing - 25;
@@ -112,9 +148,6 @@ $(".textoLetra").on("mousedown", function () {
                 if (currentGlobal != undefined) {
                     tuneDown(currentGlobal);
                 }
-
-                console.log("finalTime", finalTime);
-                console.log("finalRing", finalRing)
 
                 //! Fórmula elTele;
                 let finalCalc = (finalRing / finalTime) - 5;
@@ -150,41 +183,6 @@ $(".textoLetra").on("mousedown", function () {
             }, 500);
         }
 
-        switch (conteoRing) {
-            case 25:
-                reproduceSonido(soundSonicOkay);
-                break;
-            case 50:
-                reproduceSonido(soundSonicYeah);
-                break;
-            case 75:
-                reproduceSonido(soundSonicYes, .08)
-                break;
-            case 100:
-                reproduceSonido(soundSonicSweet, .08)
-                break;
-            case 150:
-                reproduceSonido(soundSonicFeelingGood, .08)
-                break;
-            case 185:
-                setTimeout(() => {
-                    currentGlobal = currentAppear = reproduceSonido(soundSonicAppears, .15)
-                }, 300);
-                break;
-            case 200:
-                reproduceSonido(soundSonicNowIllShowYou, .3)
-                setTimeout(() => {
-                    reproduceSonido(soundSonicSuper, .5);
-                }, 200);
-                backgroundVideo.classList.add("superSonic")
-                sonicRowText.classList.add("superSonic")
-                break;
-            case 350:
-                turnOff(currentAppear);
-                currentGlobal = currentHisWorldInstrumental = reproduceSonido(soundSonicHisWorldInstrumental, 0)
-                turnUp(currentHisWorldInstrumental, .15)
-                break;
-        }
     }
 })
 
