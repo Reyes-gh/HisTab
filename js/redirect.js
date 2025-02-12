@@ -1,6 +1,7 @@
+var modoShadow;
+var showLogo;
+
 document.addEventListener("DOMContentLoaded", () => {
-    let modoShadow;
-    let showLogo;
     const storage = (typeof browser !== "undefined" && browser.storage) ? browser.storage : chrome.storage;
     storage.sync.get(["modoShadow", "isLogoActive"], async function (obj) {
         modoShadow = obj.modoShadow;

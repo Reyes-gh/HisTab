@@ -15,178 +15,180 @@ let sonicRowText = document.querySelector(".textoSonicRow"),
     finalTime,
     finalRing = 0;
 
-const ranks = ["S", "A", "B", "C", "D"];
-const rankElements = {};
+if (showLogo) {
 
-ranks.forEach(rank => {
-    const img = document.createElement("img");
-    img.src = `images/ranks/rank${rank}.png`;
-    img.classList.add("scoreRank");
-    rankElements[rank] = img;
-});
+    const ranks = ["S", "A", "B", "C", "D"];
+    const rankElements = {};
 
-Promise.all([
-    cargaSonido("sound/ring.wav").then(buffer => soundRing = buffer),
-    cargaSonido("sound/sonic/sonicNo.wav").then(buffer => soundSonicNo = buffer),
-    cargaSonido("sound/sonic/sonicOkay.wav").then(buffer => soundSonicOkay = buffer),
-    cargaSonido("sound/sonic/sonicYeah.wav").then(buffer => soundSonicYeah = buffer),
-    cargaSonido("sound/sonic/sonicYes.wav").then(buffer => soundSonicYes = buffer),
-    cargaSonido("sound/sonic/sonicSweet.wav").then(buffer => soundSonicSweet = buffer),
-    cargaSonido("sound/sonic/sonicFeelingGood.wav").then(buffer => soundSonicFeelingGood = buffer),
-    cargaSonido("sound/sonic/sonicSuper.mp3").then(buffer => soundSonicSuper = buffer),
-    cargaSonido("sound/sonic/sonicNowIllShowYou.mp3").then(buffer => soundSonicNowIllShowYou = buffer),
-    cargaSonido("sound/sonic/sonicAppears.mp3").then(buffer => soundSonicAppears = buffer),
-    cargaSonido("sound/sonic/sonicHisWorldInstrumental.mp3").then(buffer => soundSonicHisWorldInstrumental = buffer),
-    cargaSonido("sound/sonic/sonicResults.mp3").then(buffer => soundSonicResults = buffer),
-    cargaSonido("sound/sonic/sonicScore.wav").then(buffer => soundSonicScore = buffer),
-    cargaSonido("sound/sonic/sonicRank.wav").then(buffer => soundSonicRank = buffer),
-    cargaSonido("sound/sonic/press_start.wav").then(buffer => soundPressStart = buffer),
+    ranks.forEach(rank => {
+        const img = document.createElement("img");
+        img.src = `images/ranks/rank${rank}.png`;
+        img.classList.add("scoreRank");
+        rankElements[rank] = img;
+    });
 
-    cargaSonido("sound/sonic/loopTest.mp3").then(buffer => loopTest = buffer),
-]).then(() => {
-    console.log("Come on! Step it up!");
-});
+    Promise.all([
+        cargaSonido("sound/ring.wav").then(buffer => soundRing = buffer),
+        cargaSonido("sound/sonic/sonicNo.wav").then(buffer => soundSonicNo = buffer),
+        cargaSonido("sound/sonic/sonicOkay.wav").then(buffer => soundSonicOkay = buffer),
+        cargaSonido("sound/sonic/sonicYeah.wav").then(buffer => soundSonicYeah = buffer),
+        cargaSonido("sound/sonic/sonicYes.wav").then(buffer => soundSonicYes = buffer),
+        cargaSonido("sound/sonic/sonicSweet.wav").then(buffer => soundSonicSweet = buffer),
+        cargaSonido("sound/sonic/sonicFeelingGood.wav").then(buffer => soundSonicFeelingGood = buffer),
+        cargaSonido("sound/sonic/sonicSuper.mp3").then(buffer => soundSonicSuper = buffer),
+        cargaSonido("sound/sonic/sonicNowIllShowYou.mp3").then(buffer => soundSonicNowIllShowYou = buffer),
+        cargaSonido("sound/sonic/sonicAppears.mp3").then(buffer => soundSonicAppears = buffer),
+        cargaSonido("sound/sonic/sonicHisWorldInstrumental.mp3").then(buffer => soundSonicHisWorldInstrumental = buffer),
+        cargaSonido("sound/sonic/sonicResults.mp3").then(buffer => soundSonicResults = buffer),
+        cargaSonido("sound/sonic/sonicScore.wav").then(buffer => soundSonicScore = buffer),
+        cargaSonido("sound/sonic/sonicRank.wav").then(buffer => soundSonicRank = buffer),
 
-$(".textoLetra").on("mousedown", function () {
-    // RING SOUND
-    if ($(this).hasClass("letraO")) {
+        cargaSonido("sound/sonic/loopTest.mp3").then(buffer => loopTest = buffer),
+    ]).then(() => {
+        console.log("Come on! Step it up!");
+    });
 
-        //! Formula spin progresivo
-        //console.log(letraO.style.transform = `rotate(${conteoRing * (conteoRing / 15)}deg)`)
+    $(".textoLetra").on("mousedown", function () {
+        // RING SOUND
+        if ($(this).hasClass("letraO")) {
 
-        if (!timerActive && conteoRing >= 25) {
-            timerActive = true;
-            timerTime = Date.now();
-            finalTime = 0;
-            if (bufferResults != undefined) turnOff(bufferResults);
-        }
+            //! Formula spin progresivo
+            //console.log(letraO.style.transform = `rotate(${conteoRing * (conteoRing / 15)}deg)`)
 
-        sonicRowText.classList.add("withTransition")
-        backgroundVideo.classList.add("withTransition")
+            if (!timerActive && conteoRing >= 25) {
+                timerActive = true;
+                timerTime = Date.now();
+                finalTime = 0;
+                if (bufferResults != undefined) turnOff(bufferResults);
+            }
 
-        reproduceSonido(soundRing, .02)
+            sonicRowText.classList.add("withTransition")
+            backgroundVideo.classList.add("withTransition")
 
-        clearTimeout(timeoutTransition)
-        timeoutTransition = setTimeout(() => {
-            backgroundVideo.classList.remove("withTransition")
-        }, 1400);
-        clearTimeout(timeoutRings)
+            reproduceSonido(soundRing, .02)
 
-        conteoRing += 1;
+            clearTimeout(timeoutTransition)
+            timeoutTransition = setTimeout(() => {
+                backgroundVideo.classList.remove("withTransition")
+            }, 1400);
+            clearTimeout(timeoutRings)
 
-        let newRingTag = document.createElement("img")
-        let textoRing = document.createElement("div");
+            conteoRing += 1;
 
-        newRingTag.setAttribute("src", "images/sonic/ring.gif")
-        newRingTag.style.left = Math.random(100) * 100 + "%";
-        newRingTag.classList.add("ringClass");
+            let newRingTag = document.createElement("img")
+            let textoRing = document.createElement("div");
 
-        $(".ringList").append(newRingTag);
+            newRingTag.setAttribute("src", "images/sonic/ring.gif")
+            newRingTag.style.left = Math.random(100) * 100 + "%";
+            newRingTag.classList.add("ringClass");
 
-        $(textoRing).css({
-            "top": letraO.getBoundingClientRect().y,
-            "left": letraO.getBoundingClientRect().x + 25
-        })
+            $(".ringList").append(newRingTag);
 
-        textoRing.textContent = conteoRing
-        textoRing.classList.add("ringCounter")
+            $(textoRing).css({
+                "top": letraO.getBoundingClientRect().y,
+                "left": letraO.getBoundingClientRect().x + 25
+            })
 
-        $(".ringList").append(textoRing);
+            textoRing.textContent = conteoRing
+            textoRing.classList.add("ringCounter")
 
-        setTimeout(() => {
-            newRingTag.remove();
-            textoRing.remove();
-        }, 4000);
+            $(".ringList").append(textoRing);
 
-        switch (conteoRing) {
-            case 25:
-                reproduceSonido(soundSonicOkay);
-                break;
-            case 50:
-                reproduceSonido(soundSonicYeah);
-                break;
-            case 75:
-                reproduceSonido(soundSonicYes, .08)
-                break;
-            case 100:
-                reproduceSonido(soundSonicSweet, .08)
-                break;
-            case 150:
-                reproduceSonido(soundSonicFeelingGood, .08)
-                break;
-            case 185:
-                setTimeout(() => {
-                    currentGlobal = currentAppear = reproduceSonido(soundSonicAppears, .15)
-                }, 300);
-                break;
-            case 200:
-                reproduceSonido(soundSonicNowIllShowYou, .3)
-                setTimeout(() => {
-                    reproduceSonido(soundSonicSuper, .5);
-                    backgroundVideo.classList.add("superSonic")
-                    sonicRowText.classList.add("superSonic")
-                }, 500);
-                break;
-            case 460:
-                turnOff(currentAppear);
-                currentGlobal = currentHisWorldInstrumental = reproduceSonido(soundSonicHisWorldInstrumental, .15);
-                turnUp(currentHisWorldInstrumental, .15)
-                break;
-        }
+            setTimeout(() => {
+                newRingTag.remove();
+                textoRing.remove();
+            }, 4000);
 
-        if (conteoRing > 25) {
-            timeoutRings = setTimeout(() => {
-                finalRing = conteoRing - 25;
-                conteoRing = 0;
-
-                reproduceSonido(soundSonicNo)
-
-                finalTime = (Date.now() - timerTime) / 1000;
-                timerActive = false;
-
-                sonicRowText.classList.remove("superSonic")
-                backgroundVideo.classList.remove("superSonic")
-
-                if (currentGlobal != undefined) {
-                    tuneDown(currentGlobal);
-                }
-
-                //! Fórmula elTele;
-                let finalCalc = (finalRing / finalTime) - 5;
-
-                let chosenRank;
-
-                if (finalCalc >= 10) {
-                    chosenRank = "S";
-                } else if (finalCalc >= 8) {
-                    chosenRank = "A";
-                } else if (finalCalc >= 4) {
-                    chosenRank = "B";
-                } else if (finalCalc >= 2) {
-                    chosenRank = "C";
-                } else {
-                    chosenRank = "D";
-                }
-
-                setTimeout(() => {
-                    document.querySelector(".rankContainer").append(rankElements[chosenRank]);
+            switch (conteoRing) {
+                case 25:
+                    reproduceSonido(soundSonicOkay);
+                    break;
+                case 50:
+                    reproduceSonido(soundSonicYeah);
+                    break;
+                case 75:
+                    reproduceSonido(soundSonicYes, .08)
+                    break;
+                case 100:
+                    reproduceSonido(soundSonicSweet, .08)
+                    break;
+                case 150:
+                    reproduceSonido(soundSonicFeelingGood, .08)
+                    break;
+                case 185:
                     setTimeout(() => {
-                        reproduceSonido(soundSonicRank)
+                        currentGlobal = currentAppear = reproduceSonido(soundSonicAppears, .15)
+                    }, 300);
+                    break;
+                case 200:
+                    reproduceSonido(soundSonicNowIllShowYou, .3)
+                    setTimeout(() => {
+                        reproduceSonido(soundSonicSuper, .5);
+                        backgroundVideo.classList.add("superSonic")
+                        sonicRowText.classList.add("superSonic")
+                    }, 500);
+                    break;
+                case 460:
+                    turnOff(currentAppear);
+                    currentGlobal = currentHisWorldInstrumental = reproduceSonido(soundSonicHisWorldInstrumental, .15);
+                    turnUp(currentHisWorldInstrumental, .15)
+                    break;
+            }
+
+            if (conteoRing > 25) {
+                timeoutRings = setTimeout(() => {
+                    finalRing = conteoRing - 25;
+                    conteoRing = 0;
+
+                    reproduceSonido(soundSonicNo)
+
+                    finalTime = (Date.now() - timerTime) / 1000;
+                    timerActive = false;
+
+                    sonicRowText.classList.remove("superSonic")
+                    backgroundVideo.classList.remove("superSonic")
+
+                    if (currentGlobal != undefined) {
+                        tuneDown(currentGlobal);
+                    }
+
+                    //! Fórmula elTele;
+                    let finalCalc = (finalRing / finalTime) - 5;
+
+                    let chosenRank;
+
+                    if (finalCalc >= 10) {
+                        chosenRank = "S";
+                    } else if (finalCalc >= 8) {
+                        chosenRank = "A";
+                    } else if (finalCalc >= 4) {
+                        chosenRank = "B";
+                    } else if (finalCalc >= 2) {
+                        chosenRank = "C";
+                    } else {
+                        chosenRank = "D";
+                    }
+
+                    setTimeout(() => {
+                        document.querySelector(".rankContainer").append(rankElements[chosenRank]);
                         setTimeout(() => {
-                            if (bufferResults != undefined) turnOff(bufferResults)
-                            bufferResults = reproduceSonido(soundSonicResults)
+                            reproduceSonido(soundSonicRank)
                             setTimeout(() => {
-                                turnOff(bufferResults, 10)
-                            }, 3500);
+                                if (bufferResults != undefined) turnOff(bufferResults)
+                                bufferResults = reproduceSonido(soundSonicResults)
+                                setTimeout(() => {
+                                    turnOff(bufferResults, 10)
+                                }, 3500);
+                            }, 700);
                         }, 700);
-                    }, 700);
-                }, 1000);
+                    }, 1000);
 
-            }, 500);
+                }, 500);
+            }
+
         }
-
-    }
-})
+    })
+}
 
 async function cargaSonido(url) {
     const response = await fetch(url);

@@ -3,6 +3,8 @@ let letraO = document.querySelector(".letraO"),
     buscadorContainer = document.querySelector(".searchBarContainer"),
     videoContainer = document.querySelector("#backgroundVideo")
 
+Promise.resolve(cargaSonido("sound/sonic/press_start.wav").then(buffer => soundPressStart = buffer))
+
 function busqueda(valorBusqueda) {
     buscador.classList.add("noEvents");
     reproduceSonido(soundPressStart);
