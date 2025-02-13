@@ -1,11 +1,15 @@
 let videoSource = document.createElement("source"),
     videoContainer = document.querySelector("#backgroundVideo")
 
-storage.sync.get(["globalConfig"], async function (obj) {
+//! Configuración predeterminada
+storage.sync.get({
+    'globalConfig': {
+        videoSD: "video/kingdom_low.mp4",
+        videoHD: "video/kingdom3.mp4",
+    }
+}, async function (obj) {
     let globalConfig = obj.globalConfig
     videoSource.src = globalConfig.videoSD
-
-    console.log(globalConfig)
 
     Promise.all([
         fetch(globalConfig.videoHD,
@@ -23,5 +27,3 @@ storage.sync.get(["globalConfig"], async function (obj) {
         }
     )
 })
-
-

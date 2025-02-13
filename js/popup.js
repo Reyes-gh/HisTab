@@ -8,8 +8,8 @@ storage.sync.get({
     'modoApp': 'Sonic',
     'isLogoActive': true,
     'globalConfig': {
-        lowQualityVideo: "video/kingdom_low.mp4",
-        highQualityVideo: "video/kingdom3.mp4",
+        videoSD: "video/kingdom_low.mp4",
+        videoHD: "video/kingdom3.mp4",
     }
 }, async function (obj) {
 
@@ -63,5 +63,3 @@ storage.sync.get({
         storage.sync.set({ ["isLogoActive"]: isLogoActive })
     })
 })
-
-

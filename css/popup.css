@@ -109,6 +109,7 @@ body {
     justify-content: space-between;
     align-items: center;
 
+    font-size: 16px;
     font-family: monospace;
 }
 
@@ -132,7 +133,7 @@ body {
 }
 
 .formModoElement.modoShadow:has(input[checked="true"]) {
-    background-color: red;
+    background-color: rgb(186, 43, 43);
 }
 
 .formModoElement.modoRidersZG:has(input[checked="true"]) {

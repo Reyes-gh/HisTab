@@ -1,11 +1,14 @@
-var modoApp;
-var showLogo;
-var globalConfig;
+var modoApp,
+    showLogo;
 const storage = (typeof browser !== "undefined" && browser.storage) ? browser.storage : chrome.storage;
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    storage.sync.get(["modoApp", "isLogoActive"], async function (obj) {
+    //! Configuración predeterminada
+    storage.sync.get({
+        'modoApp': 'Sonic',
+        'isLogoActive': true,
+    }, async function (obj) {
         modoApp = obj.modoApp;
         showLogo = obj.isLogoActive;
 
@@ -49,4 +52,3 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
 })
-
