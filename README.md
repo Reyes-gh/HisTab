@@ -6,6 +6,10 @@
 
  Custom Sonic Themed New Tab
 
+![histabSonic](https://github.com/user-attachments/assets/62f02491-442e-4be3-ae76-32dd8d81490e)
+ 
+![histabShadow](https://github.com/user-attachments/assets/cc3ab462-5152-4276-af41-2380da81128b)
+
 # Credits
 
 + Voicelines performed by [Jason Griffith's](https://en.wikipedia.org/wiki/Jason_Griffith)
