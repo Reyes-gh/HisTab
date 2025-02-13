@@ -2,8 +2,6 @@ let letraO = document.querySelector(".letraO"),
     buscador = document.querySelector("#searchBarInput"),
     buscadorContainer = document.querySelector(".searchBarContainer");
 
-Promise.resolve(cargaSonido(`sound/${modoApp}/press_start.wav`).then(buffer => soundPressStart = buffer))
-
 function busqueda(valorBusqueda) {
     reproduceSonido(soundPressStart);
 

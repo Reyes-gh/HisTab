@@ -15,6 +15,9 @@ let sonicRowText = document.querySelector(".textoSonicRow"),
     finalTime,
     finalRing = 0;
 
+
+Promise.resolve(cargaSonido(`sound/sonic/press_start.wav`).then(buffer => soundPressStart = buffer))
+
 if (showLogo) {
 
     const ranks = ["S", "A", "B", "C", "D"];
@@ -38,12 +41,11 @@ if (showLogo) {
         cargaSonido("sound/sonic/sonicSuper.mp3").then(buffer => soundSonicSuper = buffer),
         cargaSonido("sound/sonic/sonicNowIllShowYou.mp3").then(buffer => soundSonicNowIllShowYou = buffer),
         cargaSonido("sound/sonic/sonicAppears.mp3").then(buffer => soundSonicAppears = buffer),
-        cargaSonido("sound/sonic/sonicHisWorldInstrumental.mp3").then(buffer => soundSonicHisWorldInstrumental = buffer),
+        cargaSonido("sound/sonic/sonicHisWorldInstrumental.ogg").then(buffer => soundSonicHisWorldInstrumental = buffer),
         cargaSonido("sound/sonic/sonicResults.mp3").then(buffer => soundSonicResults = buffer),
         cargaSonido("sound/sonic/sonicScore.wav").then(buffer => soundSonicScore = buffer),
         cargaSonido("sound/sonic/sonicRank.wav").then(buffer => soundSonicRank = buffer),
 
-        cargaSonido("sound/sonic/loopTest.mp3").then(buffer => loopTest = buffer),
     ]).then(() => {
         console.log("Come on! Step it up!");
     });
@@ -128,9 +130,9 @@ if (showLogo) {
                         sonicRowText.classList.add("superSonic")
                     }, 500);
                     break;
-                case 460:
+                case 500:
                     turnOff(currentAppear);
-                    currentGlobal = currentHisWorldInstrumental = reproduceSonido(soundSonicHisWorldInstrumental, .15);
+                    currentGlobal = currentHisWorldInstrumental = reproduceSonido(soundSonicHisWorldInstrumental, 0, true, 34.2, 102.95, 48.4);
                     turnUp(currentHisWorldInstrumental, .15)
                     break;
             }
@@ -157,13 +159,13 @@ if (showLogo) {
 
                     let chosenRank;
 
-                    if (finalCalc >= 10) {
+                    if (finalCalc >= 10 && finalRing >= 300) {
                         chosenRank = "S";
-                    } else if (finalCalc >= 8) {
+                    } else if (finalCalc >= 8 && finalRing >= 200) {
                         chosenRank = "A";
-                    } else if (finalCalc >= 4) {
+                    } else if (finalCalc >= 5 && finalRing >= 150) {
                         chosenRank = "B";
-                    } else if (finalCalc >= 2) {
+                    } else if (finalCalc >= 3 && finalRing >= 100) {
                         chosenRank = "C";
                     } else {
                         chosenRank = "D";
@@ -196,7 +198,7 @@ async function cargaSonido(url) {
     return await audioContext.decodeAudioData(arrayBuffer);
 }
 
-function reproduceSonido(nameVar, customVol = 0.05, loopStart = 0, loopEnd = 0) {
+function reproduceSonido(nameVar, customVol = 0.05, isLoop = false, loopStart = 0, loopEnd = 0, setOffset = 0) {
     if (!nameVar) return;
 
     const source = audioContext.createBufferSource();
@@ -205,10 +207,10 @@ function reproduceSonido(nameVar, customVol = 0.05, loopStart = 0, loopEnd = 0) 
     gainNode.gain.value = customVol;
     source.connect(gainNode);
     gainNode.connect(audioContext.destination);
-    source.loop = (loopStart != loopEnd)
+    source.loop = isLoop
     source.loopStart = loopStart;
     source.loopEnd = loopEnd;
-    source.start(0);
+    source.start(0, setOffset);
     source.onended = () => {
         source.stop()
     }

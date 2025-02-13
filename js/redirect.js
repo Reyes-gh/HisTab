@@ -4,6 +4,7 @@ var globalConfig;
 const storage = (typeof browser !== "undefined" && browser.storage) ? browser.storage : chrome.storage;
 
 document.addEventListener("DOMContentLoaded", () => {
+
     storage.sync.get(["modoApp", "isLogoActive"], async function (obj) {
         modoApp = obj.modoApp;
         showLogo = obj.isLogoActive;

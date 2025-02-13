@@ -22,6 +22,10 @@ storage.sync.get({
         modo.addEventListener("change", function () {
             storage.sync.set({ ["modoApp"]: this.value })
 
+            formModo.forEach((modo) => {
+                modo.removeAttribute("checked")
+            })
+
             switch (this.value) {
                 case 'Sonic':
                     storage.sync.set({
@@ -48,7 +52,7 @@ storage.sync.get({
                     })
                     break;
             }
-
+            modo.setAttribute("checked", true);
         })
         modo.removeAttribute("checked");
         if (modo.value == modoApp) modo.setAttribute("checked", true);

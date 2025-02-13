@@ -10,34 +10,37 @@
 
 <body>
     <div class="containerPopup">
-
         <fieldset class="formModo">
             <legend>Selecciona un modo:</legend>
-            <div class="formModoElement">
+            <div class="formModoElement modoSonic">
                 <input type="radio" id="sonic" name="modoApp" value="Sonic" checked />
                 <label for="sonic">
                     Sonic 06
                     <img src="images/popup/sonic_logo.png" alt="Sonic image">
                 </label>
+                <div class="whiteScreen"></div>
             </div>
-            <div class="formModoElement">
+            <div class="formModoElement modoShadow">
                 <input type="radio" id="shadow" name="modoApp" value="Shadow" />
                 <label for="shadow">
                     Shadow
                     <img src="images/popup/shadow_logo.png" alt="">
                 </label>
+                <div class="whiteScreen"></div>
             </div>
-            <div class="formModoElement">
+            <div class="formModoElement modoRidersZG">
                 <input type="radio" id="riders" name="modoApp" value="RidersZG" />
                 <label for="riders">
                     Riders: Zero Gravity
                     <img src="images/popup/riderszg_logo.png" alt="">
                 </label>
+                <div class="whiteScreen"></div>
             </div>
         </fieldset>
-
-        <label id="labelShowLogo" for="showLogo">¿Mostrar logo?</label>
-        <input id="showLogo" type="checkbox">
+        <div class="labelShowLogoContainer">
+            <label id="labelShowLogo" for="showLogo">Logo</label>
+            <input id="showLogo" type="checkbox">
+        </div>
     </div>
 </body>
 

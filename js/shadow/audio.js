@@ -5,6 +5,9 @@ let shadowRowText = document.querySelector(".textoShadowRow"),
     timeoutRings,
     timeoutTransition
 
+
+Promise.resolve(cargaSonido(`sound/shadow/press_start.wav`).then(buffer => soundPressStart = buffer))
+
 Promise.all([
     cargaSonido("../sound/ring.wav").then(buffer => soundRing = buffer),
     cargaSonido("../sound/shadow/shadowCalmNo.wav").then(buffer => soundShadowNo = buffer),
@@ -36,6 +39,7 @@ if (showLogo) {
             $(".ringList").append(newRingTag);
 
             $(textoRing).css({
+                "pointer-events": "none",
                 "top": letraO.getBoundingClientRect().y,
                 "left": letraO.getBoundingClientRect().x + 25
             })
