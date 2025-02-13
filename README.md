@@ -1,5 +1,8 @@
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/33fadfc7-29e9-4e34-85a9-a758b9694d02" />
+</p>
 
-# HisTab
+# His Tab
 
  Custom Sonic Themed New Tab
 
