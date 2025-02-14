@@ -12,7 +12,7 @@
 
 # Credits
 
-+ Voicelines performed by [Jason Griffith's](https://en.wikipedia.org/wiki/Jason_Griffith)
++ Voicelines performed by [Jason Griffith](https://en.wikipedia.org/wiki/Jason_Griffith)
 
 ## Sonic
 
