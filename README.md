@@ -2,9 +2,11 @@
   <img src="https://github.com/user-attachments/assets/33fadfc7-29e9-4e34-85a9-a758b9694d02" />
 </p>
 
-# His Tab
+# About His Tab
 
- Custom Sonic Themed New Tab
+His Tab is a custom chromium-based (Chrome, Brave, Microsoft Edge, etc...) extension that replaces the New Tab window (Ctrl + T) with a new one, featuring a simple minimalistic search bar and a Sonic The Hedgehog Series' themed background, with a toggleable interactive logo.
+
+In Sonic's case, the logo contains a clicker when you press "O" in "SONIC", try to get to Rank S!
 
 ![histabSonic](https://github.com/user-attachments/assets/62f02491-442e-4be3-ae76-32dd8d81490e)
 
