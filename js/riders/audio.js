@@ -28,6 +28,31 @@ if (showLogo) {
 
     $(document).on("click", ".textoSonicRow", function () {
         reproduceSonido(soundRing)
+
+        let newRingTag = document.createElement("img")
+        let textoRing = document.createElement("div");
+
+        newRingTag.setAttribute("src", "images/ring.gif")
+        newRingTag.style.left = Math.random(100) * 100 + "%";
+        newRingTag.classList.add("ringClass");
+
+        $(".ringList").append(newRingTag);
+
+        $(textoRing).css({
+            "pointer-events": "none",
+            "top": letraO.getBoundingClientRect().y,
+            "left": letraO.getBoundingClientRect().x + 25
+        })
+
+        textoRing.textContent = conteoRing
+        textoRing.classList.add("ringCounter")
+
+        $(".ringList").append(textoRing);
+
+        setTimeout(() => {
+            newRingTag.remove();
+            textoRing.remove();
+        }, 4000);
     })
 
 }

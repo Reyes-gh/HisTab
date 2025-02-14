@@ -31,7 +31,7 @@ if (showLogo) {
             let newRingTag = document.createElement("img")
             let textoRing = document.createElement("div");
 
-            newRingTag.setAttribute("src", "images/sonic/ring.gif")
+            newRingTag.setAttribute("src", "images/ring.gif")
             newRingTag.style.left = Math.random(100) * 100 + "%";
             newRingTag.classList.add("ringClass");
 
