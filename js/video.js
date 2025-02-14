@@ -8,22 +8,18 @@ storage.sync.get({
         videoHD: "video/kingdom3.mp4",
     }
 }, async function (obj) {
-    let globalConfig = obj.globalConfig
-    videoSource.src = globalConfig.videoSD
+    let globalConfig = obj.globalConfig;
+    let isDesktop = window.innerWidth > 768;
+    videoSource.src = globalConfig.videoSD;
 
-    Promise.all([
-        fetch(globalConfig.videoHD,
-            { method: "HEAD" }
-        ).then((res) => {
-            if (window.innerWidth > 768) videoSource.src = globalConfig.videoHD;
-            videoContainer.appendChild(videoSource)
-        }).catch((err) => {
-            console.log("HD File not found!")
-        })
-    ]).then(
-        () => {
-            console.log("Done loading video!")
-            videoContainer.appendChild(videoSource)
+    if (isDesktop) {
+        try {
+            let res = await fetch(globalConfig.videoHD, { method: "HEAD" });
+            if (res.ok) videoSource.src = globalConfig.videoHD;
+        } catch (err) {
+            console.log("HD File error:", err);
         }
-    )
-})
+    }
+    videoContainer.appendChild(videoSource);
+    console.log("Done loading video!");
+});

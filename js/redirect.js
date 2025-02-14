@@ -25,19 +25,27 @@ document.addEventListener("DOMContentLoaded", () => {
                     let scriptClock = document.createElement("script");
                     let scriptIndex = document.createElement("script");
 
+                    let scriptOwnController = document.createElement("script");
+
                     scriptAudio.src = `js/${modoApp}/audio.js`;
                     scriptVideo.src = `js/video.js`;
                     scriptClock.src = 'js/clock.js';
                     scriptIndex.src = 'js/index.js';
 
-                    Promise.all([
-                        document.head.appendChild(scriptAudio),
-                        document.head.appendChild(scriptVideo),
-                        document.head.appendChild(scriptClock),
-                    ]).then(async () => {
-                        await Promise.resolve(document.head.appendChild(scriptIndex))
-                        console.log("All scripts loaded!")
+                    scriptOwnController.src = `js/${modoApp}/controller.js`;
+
+                    await Promise.all([
+                        new Promise(resolve => { scriptAudio.onload = resolve; document.head.appendChild(scriptAudio); }),
+                        new Promise(resolve => { scriptVideo.onload = resolve; document.head.appendChild(scriptVideo); }),
+                        new Promise(resolve => { scriptClock.onload = resolve; document.head.appendChild(scriptClock); }),
+                        new Promise(resolve => { scriptIndex.onload = resolve; document.head.appendChild(scriptIndex); }),
+                        new Promise(resolve => { scriptOwnController.onload = resolve; document.head.appendChild(scriptOwnController); }),
+                    ]).then(() => {
+                        console.log("All scripts loaded!");
+                    }).catch(() => {
+                        console.log("Something failed while loading scripts!");
                     })
+
 
                 })
                 .catch(error => console.error("Error cargando la página:", error));
@@ -47,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
             await loadPage(modoApp);
         }
 
-        window.addEventListener("hashchange", router);
         router(); // Cargar la primera vez
     })
 

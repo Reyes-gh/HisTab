@@ -77,7 +77,6 @@ body {
     cursor: pointer;
     z-index: 1;
     position: relative;
-    transition: .5s;
     padding-left: 10px;
     display: flex;
     flex-direction: row;
@@ -124,10 +123,6 @@ body {
     opacity: 0;
 }
 
-.formModoElement:has(input[checked="true"]) {
-    transition: .5s;
-}
-
 .formModoElement.modoSonic:has(input[checked="true"]) {
     background-color: var(--sonic-blue);
 }
@@ -136,8 +131,12 @@ body {
     background-color: rgb(186, 43, 43);
 }
 
-.formModoElement.modoRidersZG:has(input[checked="true"]) {
+.formModoElement.modoRiders:has(input[checked="true"]) {
     background-color: goldenrod;
+}
+
+.formModoElement:has(.startBlink) {
+    animation: blinking .45s ease-in-out;
 }
 
 .containerPopup {
@@ -151,4 +150,25 @@ body {
 
 #labelShowLogo {
     text-align: center;
+}
+
+@keyframes blinking {
+
+    0%,
+    20%,
+    40%,
+    60%,
+    80%,
+    100% {
+        opacity: 1;
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        opacity: 0;
+    }
+
 }

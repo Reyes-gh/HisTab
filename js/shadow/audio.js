@@ -5,7 +5,6 @@ let shadowRowText = document.querySelector(".textoShadowRow"),
     timeoutRings,
     timeoutTransition
 
-
 Promise.resolve(cargaSonido(`sound/shadow/press_start.wav`).then(buffer => soundPressStart = buffer))
 
 Promise.all([

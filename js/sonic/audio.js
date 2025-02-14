@@ -1,4 +1,3 @@
-const audioContext = new (window.AudioContext || window.webkitAudioContext());
 let sonicRowText = document.querySelector(".textoSonicRow"),
     backgroundVideo = document.querySelector("#backgroundVideo"),
     contenedorRango = document.querySelector(".rankContainer"),
@@ -11,24 +10,36 @@ let sonicRowText = document.querySelector(".textoSonicRow"),
     currentHisWorld = undefined,
     timerActive = false,
     timerTime = 0,
-    bufferResults = undefined,
     finalTime,
-    finalRing = 0;
+    finalRing = 0,
+    bufferResults = undefined;
 
+const audioContext = new (window.AudioContext || window.webkitAudioContext());
 
 Promise.resolve(cargaSonido(`sound/sonic/press_start.wav`).then(buffer => soundPressStart = buffer))
 
 if (showLogo) {
 
-    const ranks = ["S", "A", "B", "C", "D"];
-    const rankElements = {};
+    const rankingRequirements = [
+        { minCalc: 10, minRings: 310, rank: "S" },
+        { minCalc: 8, minRings: 220, rank: "A" },
+        { minCalc: 5, minRings: 140, rank: "B" },
+        { minCalc: 3, minRings: 80, rank: "C" },
+        { minCalc: 0, minRings: 0, rank: "D" }
+    ];
 
-    ranks.forEach(rank => {
+    rankingRequirements.forEach(ranking => {
+        const rank = ranking.rank.toUpperCase();
         const img = document.createElement("img");
         img.src = `images/ranks/rank${rank}.png`;
         img.classList.add("scoreRank");
-        rankElements[rank] = img;
+        ranking.img = img;
     });
+
+    function getRank(finalCalc, finalRing) {
+        const rank = rankingRequirements.find(r => finalCalc >= r.minCalc && finalRing >= r.minRings);
+        return rank.img;
+    }
 
     Promise.all([
         cargaSonido("sound/ring.wav").then(buffer => soundRing = buffer),
@@ -45,7 +56,6 @@ if (showLogo) {
         cargaSonido("sound/sonic/sonicResults.mp3").then(buffer => soundSonicResults = buffer),
         cargaSonido("sound/sonic/sonicScore.wav").then(buffer => soundSonicScore = buffer),
         cargaSonido("sound/sonic/sonicRank.wav").then(buffer => soundSonicRank = buffer),
-
     ]).then(() => {
         console.log("Come on! Step it up!");
     });
@@ -139,7 +149,7 @@ if (showLogo) {
 
             if (conteoRing > 25) {
                 timeoutRings = setTimeout(() => {
-                    finalRing = conteoRing - 25;
+                    finalRing = conteoRing;
                     conteoRing = 0;
 
                     reproduceSonido(soundSonicNo)
@@ -157,22 +167,9 @@ if (showLogo) {
                     //! Fórmula elTele;
                     let finalCalc = (finalRing / finalTime) - 5;
 
-                    let chosenRank;
-
-                    if (finalCalc >= 10 && finalRing >= 300) {
-                        chosenRank = "S";
-                    } else if (finalCalc >= 8 && finalRing >= 200) {
-                        chosenRank = "A";
-                    } else if (finalCalc >= 5 && finalRing >= 150) {
-                        chosenRank = "B";
-                    } else if (finalCalc >= 3 && finalRing >= 100) {
-                        chosenRank = "C";
-                    } else {
-                        chosenRank = "D";
-                    }
-
+                    console.log(finalCalc, finalRing)
                     setTimeout(() => {
-                        document.querySelector(".rankContainer").append(rankElements[chosenRank]);
+                        document.querySelector(".rankContainer").append(getRank(finalCalc, finalRing));
                         setTimeout(() => {
                             reproduceSonido(soundSonicRank)
                             setTimeout(() => {
@@ -191,6 +188,8 @@ if (showLogo) {
         }
     })
 }
+
+//! Funciones de sonido
 
 async function cargaSonido(url) {
     const response = await fetch(url);
