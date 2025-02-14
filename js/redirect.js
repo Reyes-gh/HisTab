@@ -1,43 +1,61 @@
-var modoShadow;
-var showLogo;
+var modoApp,
+    showLogo;
+const storage = (typeof browser !== "undefined" && browser.storage) ? browser.storage : chrome.storage;
 
 document.addEventListener("DOMContentLoaded", () => {
-    const storage = (typeof browser !== "undefined" && browser.storage) ? browser.storage : chrome.storage;
-    storage.sync.get(["modoShadow", "isLogoActive"], async function (obj) {
-        modoShadow = obj.modoShadow;
+
+    //! Configuración predeterminada
+    storage.sync.get({
+        'modoApp': 'Sonic',
+        'isLogoActive': true,
+    }, async function (obj) {
+        modoApp = obj.modoApp;
         showLogo = obj.isLogoActive;
-        let pageHTML = (modoShadow ? ("Shadow") : ("Sonic"));
 
         function loadPage(pageHTML) {
             fetch(`templates/${pageHTML}.html`)
                 .then(fetchedHTML => fetchedHTML.text())
-                .then(html => {
+                .then(async html => {
                     document.getElementById("appSonic").innerHTML = html
 
                     if (!showLogo) document.querySelector(`.texto${pageHTML}Row`).remove();
 
-                    let scriptAudio = document.createElement('script');
-                    scriptAudio.src = `js/audio${pageHTML}.js`;
-                    document.head.appendChild(scriptAudio);
-                    let scriptIndex = document.createElement('script');
-                    let scriptClock = document.createElement('script');
-                    scriptIndex.src = 'js/index.js';
+                    let scriptAudio = document.createElement("script");
+                    let scriptVideo = document.createElement("script");
+                    let scriptClock = document.createElement("script");
+                    let scriptIndex = document.createElement("script");
+
+                    let scriptOwnController = document.createElement("script");
+
+                    scriptAudio.src = `js/${modoApp}/audio.js`;
+                    scriptVideo.src = `js/video.js`;
                     scriptClock.src = 'js/clock.js';
-                    document.head.appendChild(scriptClock);
-                    document.head.appendChild(scriptIndex);
+                    scriptIndex.src = 'js/index.js';
+
+                    scriptOwnController.src = `js/${modoApp}/controller.js`;
+
+                    await Promise.all([
+                        new Promise(resolve => { scriptAudio.onload = resolve; document.head.appendChild(scriptAudio); }),
+                        new Promise(resolve => { scriptVideo.onload = resolve; document.head.appendChild(scriptVideo); }),
+                        new Promise(resolve => { scriptClock.onload = resolve; document.head.appendChild(scriptClock); }),
+                        new Promise(resolve => { scriptIndex.onload = resolve; document.head.appendChild(scriptIndex); }),
+                        new Promise(resolve => { scriptOwnController.onload = resolve; document.head.appendChild(scriptOwnController); }),
+                    ]).then(() => {
+                        console.log("All scripts loaded!");
+                    }).catch(() => {
+                        console.log("Something failed while loading scripts!");
+                    })
+
 
                 })
                 .catch(error => console.error("Error cargando la página:", error));
         }
 
-        function router() {
-            const route = pageHTML; // Si no hay hash, va a home
-            loadPage(route);
+        async function router() {
+            await loadPage(modoApp);
         }
 
-        window.addEventListener("hashchange", router);
         router(); // Cargar la primera vez
     })
 
 })
-

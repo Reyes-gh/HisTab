@@ -1,0 +1,214 @@
+@font-face {
+    font-family: 'NiseSegaSonic';
+    src: URL('../font/NiseSegaSonic.TTF') format('truetype');
+}
+
+:root {
+    --sonic-blue: rgb(49, 49, 185);
+}
+
+body {
+    background-color: black;
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+#backgroundVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    filter: brightness(110%);
+}
+
+#backgroundVideo.withTransition {
+    transition: 1s;
+}
+
+#backgroundVideo.superSonic {
+    filter: brightness(1.8);
+    opacity: .8;
+}
+
+/**
+ * ! Vignette para el fondo
+ */
+.vignette {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0px 0px 132px 69px #000;
+}
+
+/* 
+    ! Animación para fadeIn del vídeo, para que no poppee por la cara
+*/
+@keyframes fadeIn {
+    10% {
+        opacity: 0%;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}
+
+/* 
+    ! Animación para fadeIn del vídeo, para que no poppee por la cara
+*/
+@keyframes fadeOut {
+    0% {
+        opacity: 100%;
+    }
+
+    100% {
+        opacity: 0%;
+    }
+}
+
+
+.containerTexto {
+    touch-action: manipulation;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textoSonicRow {
+    z-index: 2;
+    touch-action: manipulation;
+    pointer-events: all;
+    transform: scale(.6);
+    display: flex;
+    flex-direction: row;
+    filter: drop-shadow(2px 4px 6px black);
+}
+
+.textoSonicRow.withTransition {
+    transition: .6s ease-in-out;
+}
+
+.textoSonicRow img {
+
+    pointer-events: all;
+    z-index: 2;
+    transition: .2s;
+}
+
+.textoSonicRow img:hover {
+    z-index: 3;
+    transform: scale(1.2);
+    transition: .2s;
+}
+
+.textoSonicRow img:active {
+    transition: .05s;
+    transform: scale(1.5);
+}
+
+.letraO {
+    transition: 1s;
+}
+
+.ringClass {
+    width: 90px;
+    position: absolute;
+    z-index: 1;
+    animation: fall 3s ease-in-out;
+    animation-fill-mode: forwards
+}
+
+.ringCounter {
+    pointer-events: none;
+    font-family: 'NiseSegaSonic';
+    color: white;
+    z-index: 5;
+    position: absolute;
+    animation: fallUpwards .5s ease-out;
+    animation-fill-mode: forwards;
+    font-size: calc(100% + 10px);
+
+    color: gold;
+    -webkit-text-stroke: .3rem var(--sonic-blue);
+    paint-order: stroke fill
+}
+
+.noEvents {
+    pointer-events: none;
+}
+
+.rankContainer {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.rankContainer>img {
+    height: 15%;
+    width: auto;
+    aspect-ratio: 1;
+    pointer-events: none;
+}
+
+.scoreRank {
+    z-index: 5;
+    width: 5rem;
+    position: absolute;
+    bottom: 25%;
+    animation: introRank 6s ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes introRank {
+    0% {
+        transform: scale(300%) rotate(0deg);
+        opacity: 0%;
+    }
+
+    10% {
+        transform: scale(100%) rotate(-15deg);
+        opacity: 100%;
+    }
+
+    15% {
+        transform: scale(100%) rotate(-15deg);
+        opacity: 100%;
+    }
+
+    100% {
+        transform: scale(100%) rotate(-15deg) translate(-50px, 200px);
+        opacity: 0%;
+    }
+}
+
+@keyframes fallUpwards {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        opacity: 0%;
+        transform: translateY(-30px);
+    }
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100px);
+    }
+
+    100% {
+        transform: translateY(calc(3000px));
+    }
+}

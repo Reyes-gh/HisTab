@@ -16,7 +16,6 @@
 
 
 body {
-    animation: fadeIn 1s;
     background-color: black;
     margin: 0;
     overflow: hidden;
@@ -71,100 +70,6 @@ body {
     box-shadow: inset 0px 0px 132px 69px #000;
 }
 
-/*
-    !Reloj
-*/
-
-#clock {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    color: white;
-    font-size: 36px;
-    font-family: 'Courier', monospace;
-    z-index: 3;
-}
-
-/*
-    !Contenedor padre de la searchBar
-*/
-.searchBar {
-    z-index: 3;
-    pointer-events: none;
-    transition: .2s;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-}
-
-.searchBar:has(#searchBarInput:focus) {
-    transition: .2s;
-    backdrop-filter: brightness(80%) blur(5px);
-}
-
-/*
-    ! Contenedor del input y la lupa
-*/
-
-.searchBarContainer {
-    z-index: 4;
-    pointer-events: all;
-    display: flex;
-    flex-direction: row;
-    transition: .2s;
-    height: 25px;
-    aspect-ratio: 10/1;
-    font-size: 15px;
-    position: absolute;
-    bottom: 10%;
-    gap: 5px;
-
-    background-color: black;
-    color: rgba(255, 255, 255, 0.742);
-    border: 0px;
-    border-radius: 10px;
-    padding: 10px;
-}
-
-.searchBarContainer:has(#searchBarInput:focus) {
-    transform: scale(120%);
-    transition: .2s;
-    bottom: 50%;
-
-    box-shadow: 0px 0px 20px black;
-}
-
-/*
-    ! Input buscador
-*/
-
-#searchBarInput {
-    width: 90%;
-    background: transparent;
-    background-color: black;
-    color: rgba(255, 255, 255, 0.742);
-    border: 0px;
-    height: inherit;
-}
-
-#searchBarInput:focus {
-    z-index: 4;
-    border: 0px;
-    outline: none;
-}
-
-/*
-    ! Lupa
-*/
-
-.lupaVector {
-    cursor: pointer;
-    filter: invert(90%);
-}
-
 .containerTexto {
     touch-action: manipulation;
     position: absolute;
@@ -190,60 +95,48 @@ body {
     display: flex;
     flex-direction: row;
     transform: scale(1);
-    height: 120px;
+    align-items: flex-end;
 }
 
 .textoShadowRow img {
-    height: auto;
+    height: 50px;
     width: auto;
-    position: absolute;
     pointer-events: all;
     max-width: 90px;
     z-index: 1;
-    transition: .2s;
-    transform: translateX(-206px);
     filter: drop-shadow(0px 0px 5px white);
+}
+
+.textoShadowRow.withTransition img {
+    transition: .2s
 }
 
 .textoShadowRow img:hover {
     z-index: 3;
-    transform: translateX(-206px) scale(1.1);
+    transform: scale(1.1);
     transition: .2s;
 }
 
 .textoShadowRow img:active {
     transition: .05s;
-    transform: translateX(-206px) scale(1.15);
+    transform: scale(1.3);
 }
 
-.textoShadowRow img.letraS {
-    width: 120px;
-    left: 0px;
+.textoShadowRow>.textoLetra.letraS {
+    height: 55px;
+    margin-right: -14px;
 }
 
-.textoShadowRow img.letraH {
-    width: 75px;
-    left: 72px;
+.textoShadowRow>.textoLetra.letraH {
+    margin-right: -14px;
 }
 
-.textoShadowRow img.letraA {
-    width: 62px;
-    left: 130px;
+.textoShadowRow>.textoLetra.letraD {
+    margin-right: -3px;
 }
 
-.textoShadowRow img.letraD {
-    width: 59px;
-    left: 190px;
-}
-
-.textoShadowRow img.letraO {
-    width: 63px;
-    left: 245px;
-}
-
-.textoShadowRow img.letraW {
-    width: 85px;
-    left: 304.5px;
+.textoShadowRow>.textoLetra.letraO {
+    margin-right: -2px;
 }
 
 .ringClass {
