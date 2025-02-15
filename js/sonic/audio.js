@@ -82,7 +82,7 @@ if (showLogo) {
             clearTimeout(timeoutTransition)
             timeoutTransition = setTimeout(() => {
                 backgroundVideo.classList.remove("withTransition")
-            }, 1400);
+            }, 1200);
             clearTimeout(timeoutRings)
 
             conteoRing += 1;

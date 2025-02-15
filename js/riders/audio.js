@@ -26,12 +26,12 @@ if (showLogo) {
         console.log("Come on! Step it up!");
     });
 
-    $(document).on("click", ".textoSonicRow", function () {
+    $(document).on("click", ".textoRidersRow>div:has(.letraO)", function () {
+
         reproduceSonido(soundRing)
 
         let newRingTag = document.createElement("img")
         let textoRing = document.createElement("div");
-
         newRingTag.setAttribute("src", "images/ring.gif")
         newRingTag.style.left = Math.random(100) * 100 + "%";
         newRingTag.classList.add("ringClass");
@@ -40,9 +40,11 @@ if (showLogo) {
 
         $(textoRing).css({
             "pointer-events": "none",
-            "top": letraO.getBoundingClientRect().y,
-            "left": letraO.getBoundingClientRect().x + 25
+            "top": letraO.parentElement.getBoundingClientRect().y,
+            "left": letraO.parentElement.getBoundingClientRect().x + 25
         })
+
+        conteoRing += 1;
 
         textoRing.textContent = conteoRing
         textoRing.classList.add("ringCounter")

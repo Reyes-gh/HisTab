@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         console.log("Something failed while loading scripts!");
                     })
 
+                    $(".cortina").fadeOut();
 
                 })
                 .catch(error => console.error("Error cargando la página:", error));
