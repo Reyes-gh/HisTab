@@ -12,9 +12,13 @@
 # About His Tab
 
 His Tab is a custom chromium-based (Chrome, Brave, Microsoft Edge, etc...) extension that replaces the New Tab window (Ctrl + T) with a new one, featuring a simple minimalistic search bar and a Sonic The Hedgehog Series' themed background, with a toggleable logo.
++ You can select between multiple themes using the extension menu <br>
+
+![image](https://github.com/user-attachments/assets/2320562d-f6ff-477b-83c9-896594d1cb62)
 
 + The logo usually features some kind of minigame or interactivity
 + The extension comes with a lower resolution and lightweight version of the backgrounds, optional addons to download high-res backgrounds listed below (SOON)
+
 
 ![histabSonic](https://github.com/user-attachments/assets/62f02491-442e-4be3-ae76-32dd8d81490e)
 
