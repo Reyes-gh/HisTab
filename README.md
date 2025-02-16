@@ -1,3 +1,10 @@
+# How to Install
+
++ Navigate to the extension settings in your browser
++ Turn on developer mode
++ Press "Add uncompressed extension"
++ Select uncompressed folder from downloaded ZIP
+
 <p align="center">
   <img src="https://github.com/user-attachments/assets/33fadfc7-29e9-4e34-85a9-a758b9694d02" />
 </p>
