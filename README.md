@@ -13,6 +13,8 @@ His Tab is a custom chromium-based (Chrome, Brave, Microsoft Edge, etc...) exten
 
 ![histabShadow](https://github.com/user-attachments/assets/cc3ab462-5152-4276-af41-2380da81128b)
 
+![histabRiders](https://github.com/user-attachments/assets/0ef2ccfc-cebf-4367-99f2-77d2a115472b)
+
 # Credits
 
 + Voicelines performed by [Jason Griffith](https://en.wikipedia.org/wiki/Jason_Griffith)
@@ -26,3 +28,15 @@ His Tab is a custom chromium-based (Chrome, Brave, Microsoft Edge, etc...) exten
 
 + Wallpaper extracted from [Beastdisi's Radical Highway (SONIC X SHADOW GENERATIONS) Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3371816035) for [Wallpaper Engine](https://www.wallpaperengine.io/es)
 + Title, sounds and assets extracted from [Sonic '06](https://en.wikipedia.org/wiki/Sonic_the_Hedgehog_(2006_video_game)) and [Shadow The Hedgehog '05](https://en.wikipedia.org/wiki/Shadow_the_Hedgehog_(video_game))
+
+# Disclaimer
+
+SEGA, the SEGA logo, SONIC RIDERS: ZERO GRAVITY, SONIC THE HEDGEHOG and SHADOW THE HEDGEHOG are registered trademarks or trademarks of SEGA Corporation. All Rights Reserved
+
+<p align="left">
+  <img width="100px" src="https://github.com/user-attachments/assets/926aedcf-64fa-4a22-93ae-6f5d8445bd1e"></img>
+  <img width="100px" src="https://github.com/user-attachments/assets/0bd0176d-c7b0-4c69-a36b-90aba7e89b4b"></img>
+<p>
+<br>
+
+© SEGA Corporation. 1960 - 2025
