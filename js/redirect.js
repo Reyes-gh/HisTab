@@ -39,8 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         new Promise(resolve => { scriptVideo.onload = resolve; document.head.appendChild(scriptVideo); }),
                         new Promise(resolve => { scriptClock.onload = resolve; document.head.appendChild(scriptClock); }),
                         new Promise(resolve => { scriptIndex.onload = resolve; document.head.appendChild(scriptIndex); }),
-                        new Promise(resolve => { scriptOwnController.onload = resolve; document.head.appendChild(scriptOwnController); }),
-                    ]).then(() => {
+                    ]).then(async () => {
+                        await new Promise(resolve => { scriptOwnController.onload = resolve; document.head.appendChild(scriptOwnController); });
                         console.log("All scripts loaded!");
                     }).catch(() => {
                         console.log("Something failed while loading scripts!");
