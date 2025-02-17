@@ -16,13 +16,13 @@ let sonicRowText = document.querySelector(".textoSonicRow"),
 
 const audioContext = new (window.AudioContext || window.webkitAudioContext());
 
-Promise.resolve(cargaSonido(`sound/riders/gravityDive.ogg`).then(buffer => soundPressStart = buffer))
-
 if (showLogo) {
 
     Promise.all([
+        cargaSonido("sound/riders/extras.ogg").then(buffer => menuExtras = buffer),
         cargaSonido("sound/ring.wav").then(buffer => soundRing = buffer),
     ]).then(() => {
+        //reproduceSonido(menuExtras, 0.02, true, 18, 87.6, 0);
         console.log("Come on! Step it up!");
     });
 

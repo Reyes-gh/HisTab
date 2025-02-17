@@ -26,12 +26,18 @@ function playMenu() {
 
 //! Configuración predeterminada
 storage.sync.get({
-    'modoApp': 'Sonic',
-    'isLogoActive': true,
-    'globalConfig': {
+    modoApp: 'Sonic',
+    isLogoActive: true,
+    globalConfig: {
         videoSD: "video/kingdom_low.mp4",
         videoHD: "video/kingdom3.mp4",
         soundStart: "sound/sonic/press_start.wav"
+    },
+    ridersColor: {
+        red: 0,
+        green: 0,
+        blue: 0,
+        alpha: 0
     }
 }, async function (obj) {
 

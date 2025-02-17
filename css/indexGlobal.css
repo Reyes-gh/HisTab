@@ -16,7 +16,7 @@
     !Contenedor padre de la searchBar
 */
 .searchBar {
-    z-index: 3;
+    z-index: 5;
     pointer-events: none;
     transition: .2s;
     position: absolute;

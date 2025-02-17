@@ -5,6 +5,7 @@
 
 :root {
     --sonic-blue: rgb(49, 49, 185);
+    --default-color: 0deg;
 }
 
 body {
@@ -64,7 +65,7 @@ body {
     }
 
     100% {
-        scale: 500%;
+        scale: 400%;
         height: 100%;
         opacity: 0;
     }
@@ -74,7 +75,7 @@ body {
     position: absolute;
     width: 100%;
     height: .5%;
-    z-index: 4;
+    z-index: 1;
     top: 5%;
     background-color: transparent;
     opacity: 100%;
@@ -133,11 +134,22 @@ body {
     }
 }
 
+.backgroundGradient, .backgroundWheel {
+    z-index: -1;
+}
+
+.backgroundText {
+    z-index: 0;
+}
+
+.backgroundLine {
+    z-index: 0;
+}
+
 .backgroundGradient {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -1;
     width: 100%;
     height: 100%;
     /* background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgb(3, 14, 62) 25%, rgb(3, 14, 62) 100%); */
@@ -204,7 +216,6 @@ body {
     animation: loopScroll 20s infinite;
     animation-timing-function: linear;
     position: absolute;
-    z-index: 2;
     object-fit: cover;
     object-position: top;
     overflow: visible;
@@ -213,11 +224,21 @@ body {
     background-repeat: repeat-y;
     opacity: .4;
     background-blend-mode: overlay;
-    filter: hue-rotate(90deg) brightness(200%);
+    filter: brightness(200%);
+    opacity: .25;
 }
 
-.variableHue {
-    filter: hue-rotate(0deg);
+.textBlur {
+    filter: blur(5px) brightness(500%) saturate(250%) contrast(200%)
+}
+
+.colorMask {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 2;
+    background: rgb(0, 234, 255);
+    mix-blend-mode: color;
 }
 
 @keyframes loopScroll {
@@ -281,10 +302,11 @@ body {
 }
 
 .textoRidersRow {
-    z-index: 2;
+    z-index: 4;
     touch-action: manipulation;
     pointer-events: all;
-    transform: scale(.3);
+    scale: 0.3;
+    object-fit: cover;
     display: flex;
     flex-direction: row;
     filter: drop-shadow(2px 4px 6px black);
@@ -294,7 +316,7 @@ body {
     position: absolute;
     z-index: -1;
     transform: scale(.85) translate(-233px, -59px);
-    opacity: 85%;
+    filter: drop-shadow(0 0 2rem rgba(255, 255, 255, 0.212));
 }
 
 .textoRidersRow div {
@@ -306,16 +328,16 @@ body {
     margin-left: -31px;
 }
 
-.textoRidersRow div.containerLetraO {
+.textoRidersRow div.containerLetra:has(>.letraO) {
     width: 290px;
     margin-left: -37px;
 }
 
-.textoRidersRow div.containerLetraN {
+.textoRidersRow div.containerLetra:has(>.letraN) {
     width: 330px;
 }
 
-.textoRidersRow div.containerLetraI {
+.textoRidersRow div.containerLetra:has(>.letraI) {
     width: 180px;
     margin-left: -56px;
 }
@@ -361,7 +383,7 @@ body {
 .ringClass {
     width: 90px;
     position: absolute;
-    z-index: 1;
+    z-index: 3;
     animation: fall 3s ease-in-out;
     animation-fill-mode: forwards
 }

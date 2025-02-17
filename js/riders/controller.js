@@ -1,6 +1,7 @@
 let imagenesRow = document.querySelectorAll(".textoLetra")
 let gravityDiveContainer = document.querySelector(".gravityDiveContainer");
-const containerO = document.querySelector(".containerLetraO");
+const containerO = document.querySelector(".containerLetraO"),
+    rootCSS = document.querySelector(':root').style;
 
 setTimeout(() => {
     imagenesRow.forEach((imagen) => {
@@ -47,13 +48,16 @@ function generaDive() {
     return true;
 }
 
-/* let linea = document.querySelector(".backgroundLine");
-setInterval(() => {
-    if (linea.style.opacity < 1000) {
-        linea.style.opacity += 100;
-    } else {
+function cambiaColor({ red, green, blue, alpha }) {
+    console.log(red, green, blue, alpha)
+    $(".colorMask").css({
+        "background-color": `rgb(${red}, ${green}, ${blue}, ${alpha})`
+    })
+}
 
-    }
-}, 1000); */
+storage.sync.get({ ridersColor: { red: 0, green: 0, blue: 0, alpha: 0 } }, ({ ridersColor }) => {
+    console.log(ridersColor)
+    cambiaColor(ridersColor)
+})
 
 
