@@ -27,6 +27,7 @@ buscadorClone.addEventListener("keydown", function ({ target: { value: valorBusq
                     window.location = `https://www.google.com/search?q=${valorBusqueda}`
                 }, 1000)
             }
+            buscadorClone.blur();
         };
     }
 })

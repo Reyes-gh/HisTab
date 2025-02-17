@@ -56,6 +56,7 @@ body {
     pointer-events: none;
     position: absolute;
     backdrop-filter: brightness(80%);
+    filter: brightness(80%);
 }
 
 @keyframes gravityDive {
@@ -67,10 +68,12 @@ body {
         height: 100%;
     }
 
-    90% {
+    70% {
         scale: 250%;
+        opacity: 1;
     }
 
+    90%,
     100% {
         scale: 250%;
         height: 100%;
@@ -232,7 +235,7 @@ body {
     opacity: .4;
     background-blend-mode: overlay;
     filter: brightness(200%);
-    opacity: .4;
+    opacity: .25;
 }
 
 .textBlur {
