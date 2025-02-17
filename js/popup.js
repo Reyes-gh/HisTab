@@ -31,6 +31,7 @@ storage.sync.get({
     'globalConfig': {
         videoSD: "video/kingdom_low.mp4",
         videoHD: "video/kingdom3.mp4",
+        soundStart: "sound/sonic/press_start.wav"
     }
 }, async function (obj) {
 
@@ -58,6 +59,8 @@ storage.sync.get({
                         ["globalConfig"]: {
                             videoSD: "video/kingdom_low.mp4",
                             videoHD: "video/kingdom3.mp4",
+                            soundStart: "sound/sonic/press_start.wav"
+
                         }
                     })
                     break;
@@ -66,14 +69,17 @@ storage.sync.get({
                         ["globalConfig"]: {
                             videoSD: "video/radicalhighway_low.mp4",
                             videoHD: "video/radicalhighway.mp4",
+                            soundStart: "sound/shadow/press_start.wav"
+
                         }
                     })
                     break;
                 case 'Riders':
                     storage.sync.set({
                         ["globalConfig"]: {
-                            videoSD: "video/PLACE_low.mp4",
-                            videoHD: "video/PLACE.mp4",
+                            videoSD: "None",
+                            videoHD: "None",
+                            soundStart: "sound/riders/gravityDive.ogg"
                         }
                     })
                     break;

@@ -2,8 +2,13 @@ let letraO = document.querySelector(".letraO"),
     buscador = document.querySelector("#searchBarInput"),
     buscadorContainer = document.querySelector(".searchBarContainer");
 
-function busqueda(valorBusqueda) {
-    reproduceSonido(soundPressStart);
+async function busqueda(valorBusqueda) {
+
+    await storage.sync.get('globalConfig', ({ globalConfig: { soundStart: urlStart } }) => {
+        chrome.runtime.sendMessage({ action: "back", params: [urlStart, volume = .15] }, (response) => {
+            console.log("Respuesta del background:", response);
+        });
+    })
 
     if (valorBusqueda != "") {
         buscador.classList.add("noEvents");
@@ -13,7 +18,7 @@ function busqueda(valorBusqueda) {
 
         setTimeout(() => {
             window.location = `https://www.google.com/search?q=${valorBusqueda}`
-        }, 3000)
+        }, 1000)
     } else {
         buscador.blur()
     }

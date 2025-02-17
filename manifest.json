@@ -3,7 +3,10 @@
     "name": "His Tab",
     "version": "1.0",
     "description": "Sonic themed new tab.",
-    "permissions": ["storage"],
+    "permissions": ["storage", "background", "activeTab", "offscreen"],
+    "background": {
+        "service_worker": "js/background.js"
+    },
     "icons": {
         "16": "extension_logo.png",
         "32": "extension_logo.png",
@@ -15,8 +18,14 @@
     },
     "web_accessible_resources": [
         {
-            "resources": ["js/clock.js"],
+            "resources": ["js/clock.js", "js/background.js"],
             "matches": ["<all_urls>"]
+        }
+    ],
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["js/background.js"]
         }
     ],
     "content_security_policy": {

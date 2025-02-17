@@ -26,7 +26,7 @@ if (showLogo) {
         console.log("Come on! Step it up!");
     });
 
-    $(document).on("click", ".textoRidersRow>div:has(.letraO)", function () {
+    $(document).on("mousedown", ".textoRidersRow>div:has(.letraO)", function () {
 
         reproduceSonido(soundRing)
 
