@@ -42,11 +42,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     ]).then(async () => {
                         await new Promise(resolve => { scriptOwnController.onload = resolve; document.head.appendChild(scriptOwnController); });
                         console.log("All scripts loaded!");
+                        $(".cortina").fadeOut();
                     }).catch(() => {
                         console.log("Something failed while loading scripts!");
                     })
-
-                    $(".cortina").fadeOut();
 
                 })
                 .catch(error => console.error("Error cargando la página:", error));

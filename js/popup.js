@@ -5,7 +5,7 @@ const audioContext = new (window.AudioContext || window.webkitAudioContext()),
 
 var arrayBuffer;
 var soundMenu;
-fetch("sound/riders/menu_move.wav").then(buffer => buffer.arrayBuffer())
+fetch("sound/riders/menu_confirm.wav").then(buffer => buffer.arrayBuffer())
     .then((res) => {
         audioContext.decodeAudioData(res).then(buffer => soundMenu = buffer);
     })
