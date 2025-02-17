@@ -49,6 +49,9 @@ storage.sync.get({
                 modo.classList.remove("startBlink");
             })
 
+            modo.setAttribute("checked", true);
+            this.classList.add("startBlink")
+
             switch (this.value) {
                 case 'Sonic':
                     storage.sync.set({
@@ -75,8 +78,6 @@ storage.sync.get({
                     })
                     break;
             }
-            modo.setAttribute("checked", true);
-            this.classList.add("startBlink")
         })
         modo.removeAttribute("checked");
         if (modo.value == modoApp) modo.setAttribute("checked", true);

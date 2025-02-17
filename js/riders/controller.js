@@ -1,5 +1,6 @@
 let imagenesRow = document.querySelectorAll(".textoLetra")
 let gravityDiveContainer = document.querySelector(".gravityDiveContainer");
+const containerO = document.querySelector(".containerLetraO");
 
 setTimeout(() => {
     imagenesRow.forEach((imagen) => {
@@ -7,12 +8,13 @@ setTimeout(() => {
     })
 }, 1);
 
+if (containerO) {
+    containerO.addEventListener("click", () => {
+        generaDive();
+    })
+}
 
-document.querySelector(".containerLetraO").addEventListener("click", () => {
-    generaDive();
-})
-
-//! Replace del buscador para quitar el listener genérico
+//! Replace del buscador para quitar el listener genérico y poner el custom
 buscadorClone = buscador.cloneNode(true);
 buscador.parentNode.replaceChild(buscadorClone, buscador);
 
@@ -39,3 +41,7 @@ function generaDive() {
         gravityDot.remove();
     }, 3000);
 }
+
+setInterval(() => {
+    lineaFondoFade(Math.floor(Math.random() * 6) + 1)
+}, 1000);

@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 .then(async html => {
                     document.getElementById("appSonic").innerHTML = html
 
-                    if (!showLogo) document.querySelector(`.texto${pageHTML}Row`).remove();
+                    if (!showLogo) document.querySelector(`.containerTexto`).remove();
 
                     let scriptAudio = document.createElement("script");
                     let scriptVideo = document.createElement("script");
