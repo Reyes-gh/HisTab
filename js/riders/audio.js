@@ -102,11 +102,11 @@ function tuneDown(currentBuffer) {
     }, 90);
 }
 
-function lowerVolume(currentBuffer, stepDown = 4) {
+function lowerVolume(currentBuffer, stepDown = 0.005) {
     let soundGain = currentBuffer[1];
     let intervalOff = setInterval(() => {
         if (soundGain.gain.value > 0) {
-            soundGain.gain.value -= (soundGain.gain.value / stepDown < 0.01 ? (0.05) : soundGain.gain.value / stepDown);
+            soundGain.gain.value -= stepDown;
         } else {
             soundGain.gain.value = 0;
             clearInterval(intervalOff)

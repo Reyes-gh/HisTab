@@ -12,7 +12,7 @@ setTimeout(() => {
         imagen.classList.add("withTransition");
     })
     document.querySelector(".menuB").classList.add("withTransition")
-    document.querySelector(".sonic").classList.add("withTransition")
+    /* document.querySelector(".sonic").classList.add("withTransition") */
 }, 1);
 
 //! Replace del buscador para quitar el listener genérico y poner el custom
@@ -75,7 +75,7 @@ cogSettings.addEventListener("click", () => {
         else turnUp(extrasMusic, 0.15)
     }
     else {
-        lowerVolume(extrasMusic)
+        lowerVolume(extrasMusic, 0.004)
     }
     reproduceSonido(menuConfirm, 0.2)
 })
