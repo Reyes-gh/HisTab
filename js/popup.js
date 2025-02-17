@@ -38,7 +38,8 @@ storage.sync.get({
         green: 0,
         blue: 0,
         alpha: 0
-    }
+    },
+    ridersTurn: "0"
 }, async function (obj) {
 
     let modoApp = obj.modoApp;

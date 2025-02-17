@@ -31,24 +31,37 @@ buscadorClone.addEventListener("keydown", function ({ target: { value: valorBusq
     }
 })
 
-storage.sync.get({ ridersColor: { red: 0, green: 0, blue: 0, alpha: 0 } }, ({ ridersColor }) => {
+/* storage.sync.get({ ridersColor: { red: 0, green: 0, blue: 0, alpha: 0 } }, ({ ridersColor }) => {
     cambiaColor(ridersColor)
     colorRiders.value = rgbToHex(ridersColor.red, ridersColor.green, ridersColor.blue)
+}) */
+
+storage.sync.get({ "ridersTurn": "0" }, ({ ridersTurn: grados }) => {
+    cambiaColor(grados, true)
+    colorRiders.value = grados;
 })
 
 var timeoutColor = setTimeout(() => { });
 
-colorRiders.addEventListener("input", ({ target: { value: color } }) => {
+/* colorRiders.addEventListener("input", ({ target: { value: color } }) => {
     if (timeoutColor != undefined) clearTimeout(timeoutColor);
     cambiaColor(hexToRgb(color))
     timeoutColor = setTimeout(() => {
         cambiaColor(hexToRgb(color), true)
     }, 1500);
+}) */
+
+colorRiders.addEventListener("input", ({ target: { value: grados } }) => {
+    if (timeoutColor != undefined) clearTimeout(timeoutColor);
+    cambiaColor(grados)
+    timeoutColor = setTimeout(() => {
+        cambiaColor(grados, true)
+    }, 600);
 })
 
 var disableSave = true
 
-cancelColor.addEventListener("click", () => {
+/* cancelColor.addEventListener("click", () => {
     if (disableSave) {
         clearInterval(timeoutColor)
         cambiaColor({
@@ -63,7 +76,7 @@ cancelColor.addEventListener("click", () => {
         }, 2500);
         reproduceSonido(menuQuestion, .5)
     }
-})
+}) */
 
 var extrasMusic;
 
@@ -72,13 +85,32 @@ cogSettings.addEventListener("click", () => {
     cogSettings.classList.toggle("gearSpin")
     if (menuA.classList.contains("gearChange")) {
         if (extrasMusic == undefined) extrasMusic = reproduceSonido(menuExtras, 0.15, true, 18, 87.6, 0, 500);
-        else turnUp(extrasMusic, 0.15)
+        else setTimeout(() => {
+            turnUp(extrasMusic, 0.15)
+        }, 250);
     }
     else {
         lowerVolume(extrasMusic, 0.004)
     }
     reproduceSonido(menuConfirm, 0.2)
 })
+
+/* async function cambiaColor({ red, green, blue, alpha }, save = false) {
+    $(".colorMask").css({
+        "background-color": `rgb(${red}, ${green}, ${blue}, ${alpha})`
+    })
+    if (red == 0 && green == 0 && blue == 0 && alpha == 0) $(".variableHue").addClass("original");
+    else $(".variableHue").removeClass("original");
+    if (save) storage.sync.set({ ["ridersColor"]: { red: red, green: green, blue: blue, alpha: alpha } })
+} */
+
+async function cambiaColor(grados, save = false) {
+    document.documentElement.style.setProperty('--default-color', grados + "deg");
+    if (save) {
+        storage.sync.set({ ridersTurn: grados })
+        console.log("saved");
+    }
+}
 
 function generaDive() {
     if (gravityDiveContainer.children.length > 0) return false;
@@ -95,16 +127,6 @@ function generaDive() {
     });
 
     return true;
-}
-
-async function cambiaColor({ red, green, blue, alpha }, save = false) {
-    $(".colorMask").css({
-        "background-color": `rgb(${red}, ${green}, ${blue}, ${alpha})`
-    })
-    if (red == 0 && green == 0 && blue == 0 && alpha == 0) $(".variableHue").addClass("original");
-    else $(".variableHue").removeClass("original");
-    if (save) storage.sync.set({ ["ridersColor"]: { red: red, green: green, blue: blue, alpha: alpha } })
-
 }
 
 function hexToRgb(hex) {

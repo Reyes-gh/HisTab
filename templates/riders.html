@@ -3,7 +3,7 @@
 <!-- Background Video  + Vignette + Ring List-->
 <div class="ringList"></div>
 <div class="vignette"></div>
-<div class="colorMask"></div>
+<!-- <div class="colorMask"></div> -->
 <!-- Divs elementos página -->
 <div class="technoLineContainer variableHue">
     <div class="technoLine technoBlur">
@@ -22,7 +22,7 @@
 <div class="cogSettings">
     <img src="images/cogwheel.svg" alt="">
 </div>
-<img src="images/riders/spinWheel.png" class="backgroundWheel" />
+<img src="images/riders/spinWheel.png" class="backgroundWheel variableHue" />
 <!-- <img src="images/riders/spinLine.png" class="backgroundLine" /> -->
 <!-- Divs elementos página -->
 <div class="menuA"></div>
@@ -69,8 +69,11 @@
             <legend>Settings</legend>
             <div class="colorRidersContainer">
                 Select a background color
-                <input id="colorRiders" type="color">
-                <div class="cancelColor"> ✖ </div>
+                <div class="flexHue">
+                    <input id="colorRiders" type="range" min="0" max="360">
+                    <img src="images/riders/hue.png" width="128px" alt="">
+                </div>
+                <!-- <div class="cancelColor"> ✖ </div> -->
             </div>
         </fieldset>
     </div>
