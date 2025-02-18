@@ -477,6 +477,8 @@ body {
     max-height: 98%;
     justify-self: center;
     background-color: rgba(255, 255, 255, 0.156);
+    background-image: url(../images/riders/sonic-transparent.png);
+    background-position: 85% 6%;
 }
 
 .formRiders>legend {
