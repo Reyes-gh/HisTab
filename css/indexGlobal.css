@@ -1,7 +1,4 @@
-/*
-    !Reloj
-*/
-
+/* Reloj */
 #clock {
     position: absolute;
     bottom: 20px;
@@ -12,13 +9,11 @@
     z-index: 5;
 }
 
-/*
-    !Contenedor padre de la searchBar
-*/
+/* Contenedor padre de la searchBar */
 .searchBar {
     z-index: 5;
     pointer-events: none;
-    transition: .2s;
+    transition: opacity 0.2s, backdrop-filter 0.2s;
     position: absolute;
     display: flex;
     justify-content: center;
@@ -27,81 +22,64 @@
     height: 100%;
 }
 
-.searchBar:before {
-    transition: .2s;
+.searchBar::before {
     content: '';
+    position: absolute;
     width: 100%;
     height: 100%;
     z-index: 2;
+    transition: backdrop-filter 0.2s;
 }
 
-.searchBar:has(#searchBarInput:focus):before {
-    transition: .2s;
-    content: '';
-    width: 100%;
-    height: 100%;
-    z-index: 2;
+.searchBar:has(#searchBarInput:focus)::before {
     backdrop-filter: brightness(80%) blur(5px);
 }
 
-/*
-    ! Contenedor del input y la lupa
-*/
-
+/* Contenedor del input y la lupa */
 .searchBarContainer {
     z-index: 4;
-    height: 45px;
     pointer-events: all;
     display: flex;
-    flex-direction: row;
+    align-items: center;
     height: 25px;
     aspect-ratio: 10/1;
     font-size: 15px;
     position: absolute;
     bottom: 10%;
     gap: 5px;
-
     background-color: rgba(0, 0, 0, 0.475);
     backdrop-filter: blur(2px);
     color: rgba(255, 255, 255, 0.742);
-    border: 0px;
+    border: 0;
     border-radius: 10px;
     padding: 10px;
+    transition: transform 0.2s, bottom 0.2s, backdrop-filter 0.2s, background-color 0.2s, box-shadow 0.2s;
 }
 
-
-.searchBarContainer.withTransition {
-    transition: .2s;
+.searchBarContainer>svg {
+    width: 10%;
 }
 
 .searchBarContainer:has(#searchBarInput:focus) {
-    transform: scale(120%);
-    transition: .2s;
+    transform: scale(1.2);
     bottom: 50%;
-
     backdrop-filter: blur(8px);
-
     background-color: rgba(0, 0, 0, 0.589);
-    box-shadow: 0px 0px 20px black;
+    box-shadow: 0 0 20px black;
 }
 
-/*
-    ! Input buscador
-*/
-
+/* Input buscador */
 #searchBarInput {
+    font-size: 14px;
     z-index: 4;
     width: 90%;
     background: transparent;
-    background-color: transparent;
     color: rgba(255, 255, 255, 0.742);
-    border: 0px;
-    height: inherit;
+    border: 0;
+    height: 100%;
 }
 
 #searchBarInput:focus {
-    z-index: 4;
-    border: 0px;
     outline: none;
 }
 
@@ -109,10 +87,7 @@
     color: rgba(255, 255, 255, 0.779);
 }
 
-/*
-    ! Lupa
-*/
-
+/* Lupa */
 .lupaVector {
     cursor: pointer;
     filter: invert(90%);

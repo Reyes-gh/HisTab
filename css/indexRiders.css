@@ -69,13 +69,13 @@ body {
     }
 
     60% {
-        scale: 250%;
+        transform: scale(250%);
         opacity: 1;
     }
 
     90%,
     100% {
-        scale: 250%;
+        transform: scale(250%);
         height: 100%;
         opacity: 0;
     }
@@ -93,6 +93,7 @@ body {
 }
 
 .technoLine {
+    will-change: transform, width;
     transform: translateX(-1.5vw);
     animation: technoGradient 4.5s linear infinite;
     animation-fill-mode: forwards;
@@ -217,6 +218,7 @@ body {
 }
 
 .backgroundText {
+    will-change: background-position-y;
     width: 100%;
     z-index: 0;
     height: 100%;
@@ -235,10 +237,6 @@ body {
     mix-blend-mode: screen;
     opacity: .35;
 }
-
-/* .variableHue:not(.original) {
-    filter: saturate(0);    
-}*/
 
 .variableHue {
     filter: hue-rotate(var(--default-color));
@@ -287,33 +285,6 @@ body {
     pointer-events: none;
 }
 
-/* 
-    ! Animación para fadeIn del vídeo, para que no poppee por la cara
-*/
-@keyframes fadeIn {
-    10% {
-        opacity: 0%;
-    }
-
-    100% {
-        opacity: 100%;
-    }
-}
-
-/* 
-    ! Animación para fadeIn del vídeo, para que no poppee por la cara
-*/
-@keyframes fadeOut {
-    0% {
-        opacity: 100%;
-    }
-
-    100% {
-        opacity: 0%;
-    }
-}
-
-
 .containerTexto {
     touch-action: manipulation;
     position: absolute;
@@ -328,7 +299,7 @@ body {
     z-index: 4;
     touch-action: manipulation;
     pointer-events: all;
-    scale: 0.3;
+    scale: .3;
     object-fit: cover;
     display: flex;
     flex-direction: row;
@@ -438,14 +409,14 @@ body {
 }
 
 .cancelColor:hover {
-    scale: 1.3;
+    transform: scale(1.3);
     color: red;
     cursor: pointer;
     user-select: none;
 }
 
 .cancelColor:active {
-    scale: 1.6;
+    transform: scale(1.6);
     color: black
 }
 
