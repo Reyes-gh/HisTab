@@ -27,12 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     let scriptOwnController = document.createElement("script");
 
-                    scriptAudio.src = `js/${modoApp}/audio.js`;
+                    const lowerModo = modoApp.toLowerCase()
+
+                    scriptAudio.src = `js/${lowerModo}/audio.js`;
                     scriptVideo.src = `js/video.js`;
                     scriptClock.src = 'js/clock.js';
                     scriptIndex.src = 'js/index.js';
 
-                    scriptOwnController.src = `js/${modoApp}/controller.js`;
+                    scriptOwnController.src = `js/${lowerModo}/controller.js`;
 
                     await Promise.all([
                         new Promise(resolve => { scriptAudio.onload = resolve; document.head.appendChild(scriptAudio); }),
