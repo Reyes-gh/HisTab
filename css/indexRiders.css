@@ -166,8 +166,8 @@ body {
 }
 
 .backgroundWheel {
-    position: absolute;
-    bottom: -25%;
+    position: fixed;
+    bottom: -28%;
     left: 0;
     width: auto;
     height: 55%;
@@ -448,7 +448,8 @@ body {
     max-height: 98%;
     justify-self: center;
     background-color: rgba(255, 255, 255, 0.156);
-    background-image: url(../images/riders/sonic-transparent.png);
+    background-image: url(../images/riders/transparent_square.png);
+    background-size: cover;
     background-position: 85% 6%;
 }
 
