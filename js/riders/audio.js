@@ -16,15 +16,20 @@ let sonicRowText = document.querySelector(".textoSonicRow"),
 
 const audioContext = new (window.AudioContext || window.webkitAudioContext());
 
+Promise.all([
+    cargaSonido("sound/riders/extras.ogg").then(buffer => menuExtras = buffer),
+    cargaSonido("sound/riders/menu_confirm.wav").then(buffer => menuConfirm = buffer),
+    cargaSonido("sound/riders/menu_question.wav").then(buffer => menuQuestion = buffer),
+]).then(() => {
+    console.log("READY... GO!");
+});
+
 if (showLogo) {
 
     Promise.all([
-        cargaSonido("sound/riders/extras.ogg").then(buffer => menuExtras = buffer),
         cargaSonido("sound/ring.wav").then(buffer => soundRing = buffer),
-        cargaSonido("sound/riders/menu_confirm.wav").then(buffer => menuConfirm = buffer),
-        cargaSonido("sound/riders/menu_question.wav").then(buffer => menuQuestion = buffer),
     ]).then(() => {
-        console.log("READY... GO!");
+        console.log("Ring loaded");
     });
 
     $(document).on("mousedown", ".textoRidersRow>div:has(.letraO)", function () {
