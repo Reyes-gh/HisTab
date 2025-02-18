@@ -99,15 +99,17 @@ body {
     height: 100%;
     width: 50%;
     position: absolute;
-    /* background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 0%, rgba(0, 138, 255, 1) 35%); */
     background: rgb(0, 116, 183);
-    filter: brightness(150%);
     background-size: contain;
+    mix-blend-mode: screen;
+    box-shadow: 0px 0px 1vw rgb(0, 0, 0);
+    filter: blur(1px);
+    opacity: .70;
 }
 
 .technoBlur {
     mix-blend-mode: lighten;
-    filter: blur(.75rem) brightness(100%) !important;
+    filter: blur(.75rem) brightness(500%) saturate(500%) !important;
 }
 
 .technoLine img {
@@ -146,10 +148,6 @@ body {
 
 .backgroundGradient, .backgroundWheel {
     z-index: -1;
-}
-
-.backgroundText {
-    z-index: 0;
 }
 
 .backgroundLine {
@@ -221,6 +219,7 @@ body {
 
 .backgroundText {
     width: 100%;
+    z-index: 0;
     height: 100%;
     background-position-x: 10vw;
     animation: loopScroll 20s infinite;
@@ -229,17 +228,13 @@ body {
     object-fit: cover;
     object-position: top;
     overflow: visible;
-    background-image: url(../images/riders/background_lowres2.png);
+    background-image: url(../images/riders/backlowresglow.png);
     background-size: contain;
     background-repeat: repeat-y;
     opacity: .4;
     background-blend-mode: overlay;
-    filter: brightness(200%);
-    opacity: .25;
-}
-
-.textBlur {
-    filter: blur(.6rem) brightness(200%) saturate(250%) contrast(200%)
+    mix-blend-mode: screen;
+    opacity: .35;
 }
 
 /* .variableHue:not(.original) {
@@ -251,7 +246,7 @@ body {
 }
 
 .backgroundText.variableHue {
-    filter: brightness(200%) hue-rotate(var(--default-color));
+    filter: drop-shadow(0 0 0.75rem rgb(30, 0, 255)) brightness(200%) hue-rotate(var(--default-color));
 }
 
 .textBlur.variableHue {
@@ -647,6 +642,10 @@ body {
         transform: scale(100%) rotate(-15deg) translate(-50px, 200px);
         opacity: 0%;
     }
+}
+
+.searchBarContainer {
+    border: .5px solid rgba(255, 255, 255, 0.34);
 }
 
 @keyframes fallUpwards {
