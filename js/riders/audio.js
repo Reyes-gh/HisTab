@@ -86,7 +86,6 @@ function reproduceSonido(nameVar, customVol = 0.05, isLoop = false, loopStart = 
     source.loopStart = loopStart;
     source.loopEnd = loopEnd;
     setTimeout(() => {
-        console.log("A");
         source.start(0, setOffset);
     }, delay);
     source.onended = () => {
@@ -116,7 +115,6 @@ function lowerVolume(currentBuffer, stepDown = 0.005) {
             soundGain.gain.value = 0;
             clearInterval(intervalOff)
         }
-        console.log(soundGain.gain.value);
     }, 50);
 }
 

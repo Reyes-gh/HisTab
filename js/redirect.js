@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }, async function (obj) {
         modoApp = obj.modoApp;
         showLogo = obj.isLogoActive;
-
         function loadPage(pageHTML) {
-            fetch(`templates/${pageHTML}.html`)
+
+            fetch(`templates/${pageHTML.toLowerCase()}.html`)
                 .then(fetchedHTML => fetchedHTML.text())
                 .then(async html => {
                     document.getElementById("appSonic").innerHTML = html
@@ -44,7 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     ]).then(async () => {
                         await new Promise(resolve => { scriptOwnController.onload = resolve; document.head.appendChild(scriptOwnController); });
                         console.log("All scripts loaded!");
-                        $(".cortina").fadeOut();
+                        $(".cortina").fadeOut("", () => {
+                            console.log($(".cortina").remove())
+                        })
+
                     }).catch(() => {
                         console.log("Something failed while loading scripts!");
                     })

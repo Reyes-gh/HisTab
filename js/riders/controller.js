@@ -123,7 +123,7 @@ function generaDive() {
         gravityDot.remove()
     }, false);
 
-    chrome.runtime.sendMessage({ action: "back", params: [source = 'sound/riders/gravityDive.ogg', volume = .15] }, (response) => {
+    chrome.runtime.sendMessage({ action: "backgroundCall", params: [source = 'sound/riders/gravityDive.ogg', volume = .15] }, (response) => {
         console.log("Respuesta del background:", response);
     });
 

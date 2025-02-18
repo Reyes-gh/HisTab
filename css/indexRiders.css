@@ -103,7 +103,6 @@ body {
     background-size: contain;
     mix-blend-mode: screen;
     box-shadow: 0px 0px 1vw rgb(0, 0, 0);
-    filter: blur(1px);
     opacity: .70;
 }
 
@@ -481,14 +480,26 @@ body {
 }
 
 .formRiders>legend {
-    color: #ffffff6b;
+    color: #000000;
     font-family: 'Microsport';
-    font-size: 1rem;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 5px 10px;
+    text-shadow:
+        1px 0 white,
+        -1px 0 white,
+        0 1px white,
+        0 -1px white,
+        1px 1px white,
+        -1px -1px white,
+        1px -1px white,
+        -1px 1px white;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.156) 0%, rgba(255, 255, 255, 0.156) 40%, transparent 40%);
 }
 
 .formRiders>.colorRidersContainer {
     font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.739);
+    color: rgba(255, 255, 255, 0.719);
     font-family: 'Microsport';
     display: flex;
     flex-direction: row;

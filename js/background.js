@@ -1,12 +1,11 @@
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.action === "back") {
-        // Llama a tu función aquí
+    if (message.action === "backgroundCall") {
         playSound(message.params)
         console.log("Función en background.js llamada");
         sendResponse({ status: "success" });
     }
-    return true; // Para permitir respuesta asincrónica
+    return true;
 });
 
 /**
@@ -25,6 +24,6 @@ async function createOffscreen() {
     await chrome.offscreen.createDocument({
         url: '../offscreen.html',
         reasons: ['AUDIO_PLAYBACK'],
-        justification: 'testing' // details for using the API
+        justification: 'Audio across tabs'
     });
 }

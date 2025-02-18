@@ -5,7 +5,7 @@ let letraO = document.querySelector(".letraO"),
 async function busqueda(valorBusqueda) {
 
     await storage.sync.get('globalConfig', ({ globalConfig: { soundStart: urlStart } }) => {
-        chrome.runtime.sendMessage({ action: "back", params: [urlStart, volume = .15] }, (response) => {
+        chrome.runtime.sendMessage({ action: "backgroundCall", params: [urlStart, volume = .15] }, (response) => {
             console.log("Respuesta del background:", response);
         });
     })
