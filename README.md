@@ -40,6 +40,11 @@ His Tab is a custom chromium-based (Chrome, Brave, Microsoft Edge, etc...) exten
 + Wallpaper extracted from [Beastdisi's Radical Highway (SONIC X SHADOW GENERATIONS) Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3371816035) for [Wallpaper Engine](https://www.wallpaperengine.io/es)
 + Title, sounds and assets extracted from [Sonic '06](https://en.wikipedia.org/wiki/Sonic_the_Hedgehog_(2006_video_game)) and [Shadow The Hedgehog '05](https://en.wikipedia.org/wiki/Shadow_the_Hedgehog_(video_game))
 
+## Sonic Riders
+
++ Wallpaper and Logo made by me using CSS, inspired by [Sonic Riders: Zero Gravity / Shooting Star Story](https://en.wikipedia.org/wiki/Sonic_Riders:_Zero_Gravity)'s main menu.
++ Sounds and assets made by me based on [Sonic Riders: Zero Gravity (Wii)](https://en.wikipedia.org/wiki/Sonic_Riders:_Zero_Gravity)
+
 # Disclaimer
 
 SEGA, the SEGA logo, SONIC RIDERS: ZERO GRAVITY, SONIC THE HEDGEHOG and SHADOW THE HEDGEHOG are registered trademarks or trademarks of SEGA Corporation. All Rights Reserved
