@@ -61,8 +61,7 @@
 }
 
 .searchBarContainer:has(#searchBarInput:focus) {
-    transform: scale(1.2);
-    bottom: 50%;
+    transform: scale(1.2) translateY(-25vh);
     backdrop-filter: blur(8px);
     background-color: rgba(0, 0, 0, 0.589);
     box-shadow: 0 0 20px black;
@@ -77,6 +76,10 @@
     color: rgba(255, 255, 255, 0.742);
     border: 0;
     height: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: never;
+    font-smooth: never;
+    backface-visibility: hidden;
 }
 
 #searchBarInput:focus {
