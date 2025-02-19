@@ -221,7 +221,7 @@ body {
     height: 100%;
     z-index: 0;
     background-position-x: 10vw;
-    animation: loopScroll 2s infinite linear;
+    animation: loopScroll 15s infinite linear;
     position: absolute;
     object-fit: cover;
     background-image: url(../images/riders/backlowresglow.png);
