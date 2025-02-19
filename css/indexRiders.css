@@ -217,13 +217,12 @@ body {
 .backgroundText {
     will-change: background-position-y;
     overflow: visible;
-    width: 250rem;
+    width: 100vw;
     height: 100%;
     z-index: 0;
     background-position-x: 10vw;
     animation: loopScroll 15s infinite linear;
     position: absolute;
-    object-fit: cover;
     background-image: url(../images/riders/backlowresglow.png);
     background-size: contain;
     background-repeat: repeat-y;
