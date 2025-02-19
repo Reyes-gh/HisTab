@@ -217,18 +217,30 @@ body {
 .backgroundText {
     will-change: background-position-y;
     overflow: visible;
-    width: 100%;
+    width: 250rem;
     height: 100%;
     z-index: 0;
     background-position-x: 10vw;
-    animation: loopScroll 20s infinite linear;
+    animation: loopScroll 2s infinite linear;
     position: absolute;
     object-fit: cover;
     background-image: url(../images/riders/backlowresglow.png);
-    background-size: auto;
+    background-size: contain;
     background-repeat: repeat-y;
     mix-blend-mode: screen;
     opacity: .35;
+}
+
+@keyframes loopScroll {
+
+    from {
+        background-position-y: 0px;
+    }
+
+    to {
+        background-position-y: calc(-100vh);
+    }
+
 }
 
 .variableHue {
@@ -252,18 +264,6 @@ body {
     background: rgb(0, 234, 255);
     filter: brightness(.3);
     mix-blend-mode: color;
-}
-
-@keyframes loopScroll {
-
-    from {
-        background-position-y: 0px;
-    }
-
-    to {
-        background-position-y: calc(-960px);
-    }
-
 }
 
 /**
