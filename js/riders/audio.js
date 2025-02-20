@@ -15,6 +15,7 @@ let sonicRowText = document.querySelector(".textoSonicRow"),
     bufferResults = undefined;
 
 const audioContext = new (window.AudioContext || window.webkitAudioContext());
+const analyser = audioContext.createAnalyser();
 
 Promise.all([
     cargaSonido("sound/riders/extras.ogg").then(buffer => menuExtras = buffer),
@@ -73,7 +74,11 @@ async function cargaSonido(url) {
     return await audioContext.decodeAudioData(arrayBuffer);
 }
 
-function reproduceSonido(nameVar, customVol = 0.05, isLoop = false, loopStart = 0, loopEnd = 0, setOffset = 0, delay = 1) {
+const canvas = document.querySelector("#audioVisualizer");
+const canvasCtx = canvas.getContext("2d");
+const mediaStreamDestination = audioContext.createMediaStreamDestination();
+
+function reproduceSonido(nameVar, customVol = .05, isLoop = false, loopStart = 0, loopEnd = 0, setOffset = 0, delay = 1) {
     if (!nameVar) return;
 
     const source = audioContext.createBufferSource();
@@ -85,12 +90,87 @@ function reproduceSonido(nameVar, customVol = 0.05, isLoop = false, loopStart = 
     source.loop = isLoop
     source.loopStart = loopStart;
     source.loopEnd = loopEnd;
+
     setTimeout(() => {
         source.start(0, setOffset);
     }, delay);
     source.onended = () => {
         source.stop()
     }
+    return [source, gainNode];
+}
+
+function reproduceSonidoVisual(nameVar, customVol = .05, isLoop = false, loopStart = 0, loopEnd = 0, setOffset = 0, delay = 1) {
+
+    const source = audioContext.createBufferSource();
+    const gainNode = audioContext.createGain();
+    source.buffer = nameVar;
+    gainNode.gain.value = customVol;
+    source.connect(gainNode);
+    source.loop = isLoop
+    source.loopStart = loopStart;
+    source.loopEnd = loopEnd;
+
+    setTimeout(() => {
+        source.start(0, setOffset);
+    }, delay);
+    source.onended = () => {
+        source.stop()
+    }
+
+    // Crear un destino de MediaStream para capturar el audio
+    gainNode.connect(mediaStreamDestination); // Conectar la ganancia al destino
+
+    // Obtener el MediaStream correcto
+    const mediaS = mediaStreamDestination.stream;
+    const distortion = audioContext.createWaveShaper()
+
+    // Conectar al visualizador
+    const visualizer = audioContext.createMediaStreamSource(mediaS);
+    analyser.fftSize = 16384;
+    visualizer.connect(analyser);
+    analyser.connect(distortion);
+    distortion.connect(audioContext.destination);
+
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    draw();
+
+    function draw() {
+        analyser.getByteTimeDomainData(dataArray);
+        requestAnimationFrame(draw);
+
+        // Limpiar el canvas con una mayor resolución
+        canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+        canvasCtx.fillStyle = "transparent";
+        canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
+        canvasCtx.lineWidth = 10;
+        canvasCtx.strokeStyle = "rgb(255, 255, 255)";
+        canvasCtx.beginPath();
+
+        const sliceWidth = (canvas.width / bufferLength); // Ajustar el espacio entre puntos
+        let x = 0;
+
+        const scaleFactor = 2.0; // Aumenta el tamaño de la onda visualmente
+
+        for (let i = 0; i < bufferLength; i++) {
+            const v = (dataArray[i] / 128.0 - 1) * scaleFactor + 1; // Escala sin modificar el centro
+            const y = v * (canvas.height / 2);
+
+            if (i === 0) {
+                canvasCtx.moveTo(x, y);
+            } else {
+                canvasCtx.lineTo(x, y);
+            }
+
+            x += sliceWidth;
+        }
+
+        canvasCtx.lineTo(canvas.width, canvas.height / 2);
+        canvasCtx.stroke();
+    }
+
     return [source, gainNode];
 }
 
