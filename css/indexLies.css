@@ -1,0 +1,89 @@
+#backgroundVideo, .gravityDiveContainer, .gravityDot, .technoLineContainer {
+    width: 100%;
+    position: absolute
+}
+
+.backgroundLine, .colorMask, .gravityDot, .vignette {
+    pointer-events: none
+}
+
+.containerTexto, .textoRidersRow {
+    touch-action: manipulation;
+    display: flex
+}
+
+.containerTexto, .menuA, .menuB, .searchBar, .sonic {
+    backface-visibility: hidden
+}
+
+.menuA, .menuB.withTransition, .sonic.withTransition {
+    transition: 1.5s
+}
+
+.flexHue>input, body {
+    margin: 0
+}
+
+@font-face {
+    font-family: NiseSegaSonic;
+    src: url('../font/NiseSegaSonic.TTF') format('truetype')
+}
+
+@font-face {
+    font-family: Microsport;
+    src: url('../font/Microsport Bold.ttf') format('truetype')
+}
+
+:root {
+    --sonic-blue: rgb(49, 49, 185);
+    --default-color: 0deg
+}
+
+body {
+    background-color: #000;
+    overflow: hidden;
+    font-family: Arial, sans-serif
+}
+
+#backgroundVideo {
+    top: 0;
+    left: 0;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    filter: brightness(110%)
+}
+
+.vignette {
+    z-index: 1;
+    box-shadow: inset 0 0 200px #000
+}
+
+.containerTexto {
+    justify-content: center;
+    align-items: center
+}
+
+.textoRidersRow {
+    z-index: 4;
+    pointer-events: all;
+    scale: .3;
+    object-fit: cover;
+    flex-direction: row;
+    filter: drop-shadow(2px 4px 6px black)
+}
+
+.noEvents, .ringCounter, .textoRidersRow img {
+    pointer-events: none
+}
+
+
+.containerTexto, .searchBar {
+    z-index: 4;
+    transform-style: preserve-3d;
+    transition: 1.5s
+}
+
+.searchBarContainer {
+    border: .5px solid rgba(255, 255, 255, .34)
+}

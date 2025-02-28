@@ -16,8 +16,6 @@ let sonicRowText = document.querySelector(".textoSonicRow"),
 
 const audioContext = new (window.AudioContext || window.webkitAudioContext());
 
-Promise.resolve(cargaSonido(`sound/sonic/press_start.wav`).then(buffer => soundPressStart = buffer))
-
 if (showLogo) {
 
     const rankingRequirements = [

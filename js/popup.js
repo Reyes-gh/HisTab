@@ -95,7 +95,7 @@ storage.sync.get({
                         ["globalConfig"]: {
                             videoSD: "video/liesofloop.mp4",
                             videoHD: "video/liesofloop.mp4",
-                            soundStart: "sound/riders/gravityDive.ogg"
+                            soundStart: "sound/lies/liesdeath.ogg"
                         }
                     })
                     break;
